@@ -1,3 +1,5 @@
+import basics.Basics;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -12,8 +14,12 @@ public class App {
 
         Basics basics = new Basics();
         // basics.variableBasics();
-        basics.arrayBasics();
+        // basics.arrayBasics();
+        // basics.mathBasics();
+        // basics.stringBasics();
         // basics.controlFlowBasics();
         // basics.loopBasics();
+        // basics.classBasics();
+        basics.genericsBasics();
     }
 }
