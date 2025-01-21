@@ -1,4 +1,6 @@
-import basics.Basics;
+import java.awt.Rectangle;
+
+import mk.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -13,13 +15,16 @@ public class App {
         System.out.println("Hello, there..");
 
         Basics basics = new Basics();
-        // basics.variableBasics();
+        basics.variableBasics();
         // basics.arrayBasics();
+        // basics.operatorBasics();
         // basics.mathBasics();
         // basics.stringBasics();
         // basics.controlFlowBasics();
         // basics.loopBasics();
         // basics.classBasics();
-        basics.genericsBasics();
+        // basics.genericsBasics();
+        // basics.listBasics();
+        // basics.exercises();
     }
 }

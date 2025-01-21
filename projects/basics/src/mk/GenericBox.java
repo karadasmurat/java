@@ -1,4 +1,4 @@
-package basics;
+package mk;
 /**
  * Generic version of the Box class.
  * 

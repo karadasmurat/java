@@ -1,4 +1,4 @@
-package basics;
+package mk;
 public class OuterClass {
 
     private String outerField = "Outer field";

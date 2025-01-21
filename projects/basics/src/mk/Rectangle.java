@@ -1,4 +1,4 @@
-package basics;
+package mk;
 
 public class Rectangle {
 
