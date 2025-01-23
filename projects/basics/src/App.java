@@ -15,16 +15,18 @@ public class App {
         System.out.println("Hello, there..");
 
         Basics basics = new Basics();
-        basics.variableBasics();
-        // basics.arrayBasics();
+        // basics.variableBasics();
+        basics.arrayBasics();
         // basics.operatorBasics();
         // basics.mathBasics();
         // basics.stringBasics();
         // basics.controlFlowBasics();
+        // basics.switchBasics();
         // basics.loopBasics();
         // basics.classBasics();
         // basics.genericsBasics();
         // basics.listBasics();
+        // basics.test();
         // basics.exercises();
     }
 }
