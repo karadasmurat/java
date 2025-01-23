@@ -16,14 +16,15 @@ public class App {
 
         Basics basics = new Basics();
         // basics.variableBasics();
-        basics.arrayBasics();
+        // basics.arrayBasics();
+        // basics.stackBasics();
         // basics.operatorBasics();
         // basics.mathBasics();
         // basics.stringBasics();
         // basics.controlFlowBasics();
         // basics.switchBasics();
         // basics.loopBasics();
-        // basics.classBasics();
+        basics.classBasics();
         // basics.genericsBasics();
         // basics.listBasics();
         // basics.test();

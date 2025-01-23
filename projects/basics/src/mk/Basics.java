@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import dsa.StackMK;
 import exercises.Exercise;
 import tmp.Tmp;
 
@@ -30,6 +31,15 @@ public class Basics {
 
     public static void modifyArray(int[] arr) {
         arr[0] = 100; // Modifies the first element of the array
+    }
+
+    public int getAnInt() {
+        return 333;
+    }
+
+    public byte getAByte() {
+        byte b = 1;
+        return b;
     }
 
     public void variableBasics() {
@@ -136,6 +146,12 @@ public class Basics {
         // (65)
 
         System.out.println("'A': " + asciiValue); // Output: 65
+
+        // widening - implicit
+        int res1 = getAByte();
+        System.out.println(res1);
+
+        short res2 = getAnInt(); // ERR Type mismatch: cannot convert from int to short
 
         // blank final variable
         // declare a final variable without initializing it immediately:
@@ -424,6 +440,19 @@ public class Basics {
         // check if clone and original share subarrays: YES
         System.out.println("arrClone[0] == array3[0]: " + (arrClone[0] == array2D[0])); // true
 
+        // sorting
+        Car car1 = new Car("Kia", "Sorento", 2007);
+        Car car2 = new Car("Toyota", "Camry", 2015);
+        Car car3 = new Car("Ford", "Mustang", 1967);
+
+        Car[] cars = { car1, car2, car3 };
+
+        System.out.println(Arrays.toString(cars));
+
+        Arrays.sort(cars); // sort in-place, according to .compareTo()
+
+        System.out.println(Arrays.toString(cars));
+
     }
 
     public void controlFlowBasics() {
@@ -595,6 +624,11 @@ public class Basics {
         System.out.println(car3); // Car(Tesla, Model Y, 2024)
         System.out.println(car4); // Car(Kia, Sorento, 2007)
 
+        // Overloading
+        OverloadTest ot = new OverloadTest();
+        ot.overloadedOperation(1, "A");
+        ot.overloadedOperation("A", 1);
+
     }
 
     public void genericsBasics() {
@@ -684,6 +718,32 @@ public class Basics {
         for (var s : names) {
             System.out.println(s);
         }
+    }
+
+    public void stackBasics() {
+        System.out.println("Stack Basics");
+        System.out.println("------------");
+
+        StackMK stack = new StackMK(2);
+        System.out.println(stack);
+
+        stack.push(50);
+        stack.push(70);
+        stack.push(90);
+
+        System.out.println(stack);
+
+        int val1 = stack.pop();
+        System.out.println(stack);
+        int val2 = stack.pop();
+        System.out.println(stack);
+        int val3 = stack.pop();
+
+        System.out.println(stack);
+
+        stack.push(100);
+        System.out.println(stack);
+
     }
 
     public void exercises() {
