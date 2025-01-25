@@ -1,3 +1,4 @@
+package inheritance;
 public class MountainBike extends Bicycle {
 
     // the MountainBike subclass adds one field
