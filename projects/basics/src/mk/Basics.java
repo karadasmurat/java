@@ -9,7 +9,11 @@ import java.util.List;
 
 import dsa.StackMK;
 import exercises.Exercise;
-import tmp.Tmp;
+import patterns.User;
+import relationships.Country;
+import relationships.Course;
+import relationships.President;
+import relationships.Student;
 
 public class Basics {
 
@@ -365,7 +369,9 @@ public class Basics {
         // shortcut syntax to create and initialize an array:
 
         int[] scores = { 30, 50, 60, 80, 90, 100 };
-        int[] factorial = { 1, 1, 2, 6, 24, 120, 720, 5040 };
+        int[] factorial;
+        // factorial = { 1, 1, 2, 6, 24, 120, 720, 5040 }; // ERR Array constants can only be used in initializers.
+        factorial= new int[]{1,1,2,6,24,120,720,5040};
 
         // Iterate through the array using a for-each loop
         System.out.println("\nIterate using for-each loop:");
@@ -374,9 +380,12 @@ public class Basics {
         }
 
         // varargs
-        int total = total();
-        // int total = total(1, 2, 3, 4, 5);
-        System.out.println("Total: " + total);
+        int total1 = total();
+        int total2 = total(1, 2, 3);
+        int total3 = total(new int[] { 1, 2, 3 });
+        System.out.println("total1: " + total1);
+        System.out.println("total2: " + total2);
+        System.out.println("total3: " + total3);
 
         // Pass by reference
         int[] elements = { 1, 2, 3 };
@@ -629,6 +638,9 @@ public class Basics {
         ot.overloadedOperation(1, "A");
         ot.overloadedOperation("A", 1);
 
+        byte byteVal = 1;
+        ot.f(byteVal); // short!
+
     }
 
     public void genericsBasics() {
@@ -746,6 +758,58 @@ public class Basics {
 
     }
 
+    public void relationshipsBasics() {
+        System.out.println("Relationships");
+        System.out.println("-------------");
+
+        // 1-1 relationship on both ends
+        // Create a Country object
+        Country usa = new Country("USA");
+        // Create a President object associated with the country
+        President potus = new President("Trump", usa);
+
+        System.out.println(usa);
+        System.out.println(potus);
+
+        // check if country is notified
+        System.out.println("Check if country is modified: " + usa.getPresident()); //
+
+        President putin = new President("Putin");
+        Country rus = new Country("Russia", putin);
+
+        System.out.println(putin);
+        System.out.println(rus);
+
+        // Create instances of Student and Course
+        Student student1 = new Student("Alice");
+        Student student2 = new Student("Bob");
+
+        Course course1 = new Course("Math");
+        Course course2 = new Course("Science");
+
+        // Enroll students in courses
+        student1.enrollInCourse(course1);
+
+        // course2.register(student2);
+
+        // check the result on student's side:
+        // System.out.println(student1.getEnrolledCourses());
+        // System.out.println(course1.getEnrolledStudents());
+
+        // System.out.println(student2.getEnrolledCourses());
+        // System.out.println(course2.getEnrolledStudents());
+    }
+
+    public void patternsBasics() {
+        System.out.println("Patterns");
+        System.out.println("--------");
+        patterns.User user = patterns.User.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .age(30)
+                .build();
+    }
+
     public void exercises() {
         System.out.println("Exercises");
         System.out.println("---------");
@@ -821,6 +885,7 @@ public class Basics {
 
     // Calculate the sum of all the given integers.
     public int total(int... nums) {
+        System.out.println("total(): varargs only.");
         if (nums.length == 0)
             return 0;
 
@@ -833,6 +898,18 @@ public class Basics {
 
         return sum;
     }
+
+    // public int total(int first, int... others) {
+    // System.out.println("total(): 2 parameters");
+    // int sum = first;
+
+    // // vararg is treated as an array of the specified data type.
+    // for (int n : others) {
+    // sum += n;
+    // }
+
+    // return sum;
+    // }
 
     public void test() {
         System.out.println("Test");

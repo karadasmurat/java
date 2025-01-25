@@ -1,9 +1,14 @@
 package mk;
 
 public class Account {
+
+    // Keep track of the total number of accounts
+    private static int totalAccounts;
+
     private double balance;
 
     public Account(double initialBalance) {
+        totalAccounts++;
         this.balance = initialBalance;
     }
 
@@ -26,15 +31,26 @@ public class Account {
         return "Account(" + this.balance + ")";
     }
 
+    // static: To get the total number of accounts, we don't need an instance of the
+    // Account class. We simply need to know the global count maintained by the
+    // class itself.
+    public static int getTotalAccounts() {
+        return totalAccounts;
+    }
+
     public static void main(String[] args) {
 
-        Account acc = new Account(100);
+        Account acc1 = new Account(0);
+        Account acc2 = new Account(100);
+        Account acc3 = new Account(200);
 
-        System.out.println(acc);
+        System.out.println("Total accounts: " + Account.getTotalAccounts()); // 3
 
-        acc.withdraw(1);
+        System.out.println(acc2);
 
-        System.out.println(acc);
+        acc2.withdraw(1);
+
+        System.out.println(acc2);
 
     }
 }

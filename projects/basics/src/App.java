@@ -24,10 +24,12 @@ public class App {
         // basics.controlFlowBasics();
         // basics.switchBasics();
         // basics.loopBasics();
-        basics.classBasics();
+        // basics.classBasics();
         // basics.genericsBasics();
         // basics.listBasics();
         // basics.test();
+        basics.relationshipsBasics();
+        // basics.patternsBasics();
         // basics.exercises();
     }
 }

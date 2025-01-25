@@ -1,6 +1,6 @@
 package mk;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private String make;
     private String model;
@@ -21,4 +21,10 @@ public class Car {
         return "Car(" + this.make + ", " + this.model + ", " + this.year + ")";
 
     }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.year - other.year; // Compare cars by year
+    }
+
 }
