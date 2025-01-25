@@ -27,8 +27,9 @@ public class App {
         // basics.classBasics();
         // basics.genericsBasics();
         // basics.listBasics();
+        basics.inheritanceBasics();
         // basics.test();
-        basics.relationshipsBasics();
+        // basics.relationshipsBasics();
         // basics.patternsBasics();
         // basics.exercises();
     }

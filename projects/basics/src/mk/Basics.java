@@ -15,6 +15,8 @@ import relationships.Course;
 import relationships.President;
 import relationships.Student;
 
+import inheritance.*;
+
 public class Basics {
 
     public int getMax(int a, int b) {
@@ -370,8 +372,9 @@ public class Basics {
 
         int[] scores = { 30, 50, 60, 80, 90, 100 };
         int[] factorial;
-        // factorial = { 1, 1, 2, 6, 24, 120, 720, 5040 }; // ERR Array constants can only be used in initializers.
-        factorial= new int[]{1,1,2,6,24,120,720,5040};
+        // factorial = { 1, 1, 2, 6, 24, 120, 720, 5040 }; // ERR Array constants can
+        // only be used in initializers.
+        factorial = new int[] { 1, 1, 2, 6, 24, 120, 720, 5040 };
 
         // Iterate through the array using a for-each loop
         System.out.println("\nIterate using for-each loop:");
@@ -756,6 +759,28 @@ public class Basics {
         stack.push(100);
         System.out.println(stack);
 
+    }
+
+    public void inheritanceBasics() {
+        System.out.println("Inheritance");
+        System.out.println("-----------");
+
+        Animal dog1 = new Dog("bark");
+        Animal cat1 = new Cat("cat1");
+        Animal cat2 = new Cat("cat2");
+
+        System.out.println(Animal.getAnimalCount()); // 3
+
+        Cat.incrementAnimalCount();
+
+        System.out.println(Animal.getAnimalCount()); // 4
+        System.out.println(Dog.getAnimalCount()); // 4
+        System.out.println(Cat.getAnimalCount()); // 4
+
+        // access a static field defined on the superclass
+        System.out.println(Animal.MAX_AGE);
+        System.out.println(Dog.MAX_AGE);
+        System.out.println(Cat.MAX_AGE);
     }
 
     public void relationshipsBasics() {
