@@ -1,4 +1,4 @@
-package mk;
+package initialization;
 
 public class InitializationDemo2 {
     static int s;

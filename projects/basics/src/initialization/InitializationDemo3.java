@@ -1,4 +1,4 @@
-package mk;
+package initialization;
 
 class A {
 
@@ -24,7 +24,7 @@ public class InitializationDemo3 {
     }
 
     // Reference as a static variable
-    static A a = new A();
+    // static A a = new A();
 
     public InitializationDemo3() {
         System.out.println("InitializationDemo3()");
@@ -32,7 +32,7 @@ public class InitializationDemo3 {
 
     public static void main(String[] args) { // Load ID3
         // int tmp = A.x; // Load A
-        // A a = new A(); // Load A, A()
+        A a = new A(); // Load A, A()
     }
 
 }
