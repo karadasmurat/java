@@ -7,4 +7,10 @@ public class Dog extends Animal {
         System.out.printf("Dog(%s): constructor called.\n", name);
     }
 
+    // Dog extends Animal, therefore inherits protected methods from Animal.
+    // It will not be directly accessible from outside the Person class or its
+    // subclasses.
+    public void doSomething() {
+        protectedMethod(); // accessible within the Person like a local method
+    }
 }

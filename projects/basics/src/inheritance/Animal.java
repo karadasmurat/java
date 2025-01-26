@@ -23,4 +23,12 @@ public class Animal {
         return animalCount;
     }
 
+    public String publicMethod() {
+        return "Animal.publicMethod";
+    }
+
+    protected String protectedMethod() {
+        return "Animal.protectedMethod";
+    }
+
 }
