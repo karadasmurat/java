@@ -232,6 +232,26 @@ public class Basics {
         x1 >>= 1; // shift all the bits in x1 two positions to the right
         System.out.printf("%d: %s\n", x1, Integer.toBinaryString(x1)); // 2: 10
 
+        int READ_FLAG = 4; // rwx: 100
+        int WRITE_FLAG = 2; // rwx: 010
+        int EXECUTE_FLAG = 1; // rwx: 001
+
+        int permissions_rwx = 7; // rwx: 111
+        int permissions_rw = 6; // rwx: 110
+        int permissions_r = 4; // rwx: 100
+
+        // check permission (and bitmask)
+        if ((permissions_rw & READ_FLAG) == READ_FLAG) {
+            System.out.println("Can read.");
+        } else {
+            System.out.println("Cannot read.");
+        }
+        if ((permissions_rw & EXECUTE_FLAG) == EXECUTE_FLAG) {
+            System.out.println("Can execute.");
+        } else {
+            System.out.println("Cannot execute.");
+        }
+
         // Precedence
         boolean b1 = true;
         boolean b2 = false;
@@ -604,6 +624,10 @@ public class Basics {
             }
             System.out.println(i);
         }
+    }
+
+    public void enumBasics() {
+
     }
 
     public void classBasics() {
