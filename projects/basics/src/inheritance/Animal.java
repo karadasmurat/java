@@ -31,4 +31,14 @@ public class Animal {
         return "Animal.protectedMethod";
     }
 
+    // inherited by subclasses
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal(" + name + ")";
+    }
+
 }

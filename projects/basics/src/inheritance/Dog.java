@@ -13,4 +13,10 @@ public class Dog extends Animal {
     public void doSomething() {
         protectedMethod(); // accessible within the Person like a local method
     }
+
+    @Override
+    public String toString() {
+        return "Dog(" + name + ")";
+    }
+
 }
