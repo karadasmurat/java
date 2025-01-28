@@ -8,5 +8,9 @@ public class EnumDemo {
 
         Size size = Size.LARGE;
 
+        for (Size s : Size.values()) {
+            System.out.println(s);
+        }
+
     }
 }

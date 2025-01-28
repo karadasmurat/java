@@ -1,11 +1,26 @@
 package mk;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.TimeZone;
 
 import dsa.StackMK;
 import exercises.Exercise;
@@ -64,7 +79,20 @@ public class Basics {
         // System.out.println(str.length()); // Runtime Exception in thread "main"
         // java.lang.NullPointerException:
 
-        //
+        int $OK2Identifier;
+        int _alsoOK1d3ntifi3r;
+        int __SStillOkbutKnotsonice$;
+        int Public = 0;
+
+        // invalid identifiers
+        // int 3DPointClass; // identifiers cannot begin with a number
+        // int hollywood@vine; // @ is not a letter, digit, $ or _
+        // int *$coffee; // * is not a letter, digit, $ or _
+        // public // public is a reserved word
+        // int 1980_s = 0;
+
+        boolean true_ = false;
+        System.out.println("true_:" + true_);
 
         byte b = 127; // 8-bit signed
         // byte b2 = 2025; // Compilation ERR: Type mismatch: cannot convert from int to
@@ -78,10 +106,23 @@ public class Basics {
         int big = Integer.MAX_VALUE; // 2147483647
         System.out.println("Integer.MAX_VALUE: " + big);
 
+        int hexVal = 0xFF;
+        int binaryVal = 0b100;
+        int octalVal = 0100; // Prefix: zero
+
+        System.out.println("0xFF: " + hexVal); // 255
+        System.out.println("0b100: " + binaryVal); // 4
+        System.out.println("0100: " + octalVal); // 64
+
         long l = 0L; // 64-bit An integer literal is of type long if it ends with the letter L or l;
 
         float f = 0.0F;
         double d = 0.0;
+
+        double d2 = 10; // automatic promotion to double
+        double d3 = 0xF; // automatic promotion to double
+        System.out.println("double 10: " + d2);
+        System.out.println("double 0xF: " + d3);
 
         boolean result = true;
         char capitalC = 'C';
@@ -96,6 +137,10 @@ public class Basics {
         System.out.println(result);
         System.out.println(capitalC);
         System.out.println(euro); //
+
+        // double notAtStart = _1000.00; // DOES NOT COMPILE
+        // double notAtEnd = 1000.00_; // DOES NOT COMPILE
+        // double notByDecimal = 1000_.00; // DOES NOT COMPILE
 
         // type inference
         var myNumber = 99; // The compiler infers that myNumber is of type int
@@ -157,7 +202,8 @@ public class Basics {
         int res1 = getAByte();
         System.out.println(res1);
 
-        short res2 = getAnInt(); // ERR Type mismatch: cannot convert from int to short
+        // short res2 = getAnInt(); // ERR Type mismatch: cannot convert from int to
+        // short
 
         // blank final variable
         // declare a final variable without initializing it immediately:
@@ -173,6 +219,67 @@ public class Basics {
             finalVar = -1;
         }
         System.out.println("finalVar: " + finalVar); // finalVar: -1
+
+        // assign to null
+        // int value = null; // DOES NOT COMPILE
+        String s5 = null;
+
+        String firstname, lastname;
+        int c1 = 1, c2 = 2;
+
+        // Only i3 was initialized: i3. The other two remain declared but not yet
+        // initialized.
+        int i1, i2, i3 = 11;
+
+        String s1 = "1", s2;
+
+        // if (s2 == null) { // ERR The local variable s2 may not have been initialized.
+        // System.out.println("s2 is null!");
+        // }
+
+        // double d1, double d2; // Syntax error on token "," ; expected
+
+        initializeVariables();
+    }
+
+    public void initializeVariables() {
+
+        // The compiler is also smart enough to recognize initializations that are more
+        // complex.
+        boolean check = true;
+        int answer; // local variable, declared within methods or blocks, must be explicitly
+                    // initialized before their first use
+        int onlyOneBranch;
+        if (check) {
+            onlyOneBranch = 1;
+            answer = 1;
+        } else {
+            answer = 2;
+        }
+        System.out.println(answer);
+        // System.out.println(onlyOneBranch); // DOES NOT COMPILE The local variable may
+        // not have been initialized.
+
+    }
+
+    public void wrapperBasics() {
+        // Wrapper Classes
+        Integer i1 = 1;
+        Integer i2 = Integer.valueOf(1);
+        Integer i3 = Integer.valueOf("1");
+
+        int i5 = Integer.parseInt("1");
+        int i4 = i1.intValue();
+
+        BigDecimal bd1 = new BigDecimal("3.14159");
+        BigDecimal bd2 = BigDecimal.valueOf(3.14);
+
+        BigDecimal total = bd1.add(bd2);
+
+        int totalINT = total.intValue();
+
+        System.out.println("Total: " + total + "Total(int): " + totalINT);
+
     }
 
     public void operatorBasics() {
@@ -198,6 +305,54 @@ public class Basics {
         int b = a++;
 
         System.out.printf("a:%d  b:%d\n", a, b); // a:1 b:0
+
+        int y = 4;
+        double res = 3 + 2 * --y;
+
+        System.out.printf("y: %d res: %f\n", y, res); // y: 3 res: 9.0
+
+        // For integer values, division results in the floor value of the nearest
+        // integer
+        // that fulfills the operation
+        System.out.println(10 / 3); // Outputs 3
+        System.out.println(11 / 3); // Outputs 3
+
+        // smaller data types are promoted to int when used with a binary arithmetic
+        // operator
+
+        short sh1 = 10;
+        short sh2 = 3;
+        var div1 = sh1 / sh2;
+        System.out.println("Short/short: " + div1); // 3
+
+        // float fval = 1.0; // ERR Type mismatch: cannot convert from double to float
+        // int x22 = 1.0; // DOES NOT COMPILE
+        // short y22 = 1921222; // DOES NOT COMPILE
+
+        // short s10 = 10;
+        // short s11 = 3;
+        // short z = s10 * s11; // DOES NOT COMPILE Type mismatch cannot convert from
+        // int to short
+
+        // int xval = !5; // DOES NOT COMPILE
+        // boolean yval = -true; // DOES NOT COMPILE
+        // boolean zval = !0; // DOES NOT COMPILE
+
+        long x33 = 10;
+        int y33 = 5;
+        y33 *= x33; // auto cast
+
+        var res4 = 1L * 1;
+        var res5 = 1.0 * 1;
+
+        // attention
+        int cnt = 0;
+        cnt = cnt++;
+        System.out.println("cnt = cnt++: " + cnt); // 0
+
+        int xval = 3;
+        int yval = ++xval * 5 / xval-- + --xval;
+        System.out.println("Complex unary: " + xval + " " + yval); // 2 7
 
         // ternary operator ? :
         // assign this or that
@@ -284,6 +439,28 @@ public class Basics {
         var c3 = c1 + c2; // 131 - note that c3 is int
         System.out.println(c3);
 
+        // == on different types
+        byte byte1 = 0;
+        short short1 = 0;
+        int int1 = 0;
+        long long1 = 0;
+        String st1 = "0";
+
+        // Comparison between an int and a long
+        // Java automatically promotes int to a long
+        // after promotion, they have the same value (0), the condition evaluates to
+        // true.
+        if (Long.parseLong(st1) == long1) { // ERR Incompatible operand types String and long
+            System.out.println("success");
+        } else {
+            System.out.println("failure");
+        }
+
+        // do {
+        // int y11 = 1;
+        // System.out.print(y++ + " ");
+        // } while (y11 <= 10);
+
     }
 
     public void mathBasics() {
@@ -304,13 +481,42 @@ public class Basics {
         System.out.println("Math.random(): " + rand);
     }
 
+    public void randomBasics() {
+
+        System.out.println("Random");
+        System.out.println("------");
+
+        Random random = new Random();
+
+        int randomNumber1 = random.nextInt(6); // Generate a random number between 0 (inclusive) and 6 (exclusive)
+        System.out.println("Random number 1: " + randomNumber1);
+
+        double randomNumber2 = random.nextDouble(); // Generate a random number between 0.0 and 1.0
+        System.out.println("Random number 2: " + randomNumber2);
+
+        boolean randomBoolean = random.nextBoolean();
+        System.out.println("Random boolean: " + randomBoolean);
+    }
+
     public void stringBasics() {
         System.out.println("String Basics");
         System.out.println("-------------");
 
         String initials = "MK";
+        String name = new String("Alice");
 
         int len = initials.length(); // the number of characters contained in the string object
+
+        // String pool
+        String str1 = "Java";
+        String str2 = "Java";
+
+        String str3 = new String("Java");
+        String str4 = new String("Java");
+
+        // referring to the same object?
+        stringEquality(str1, str2);
+        stringEquality(str3, str4);
 
         // Concatenating Strings
         String s1 = "Hello ";
@@ -323,9 +529,23 @@ public class Basics {
         String s4 = s1.concat(s2);
         System.out.println("Concat using +: " + s4);
 
+        System.out.println(1 + 2); // 3
+        System.out.println("a" + "b"); // ab
+        System.out.println("a" + "b" + 3); // ab3
+        System.out.println(1 + 2 + "c"); // 3c
+
+        int three = 3;
+        String four = "4";
+        System.out.println(1 + 2 + three + four);
+
         // Getting Characters and Substrings by Index
         char firstChar = s1.charAt(0); // H
         System.out.println("First char: " + firstChar);
+        String string = "animals";
+        System.out.println(string.charAt(0)); // a
+        System.out.println(string.charAt(6)); // s
+        // System.out.println(string.charAt(7)); // throws
+        // StringIndexOutOfBoundsException
 
         // Returns a new string that is a substring of this string
         String substr = s1.substring(0, 2); // He
@@ -353,6 +573,83 @@ public class Basics {
         System.out.printf("length: %d capacity: %d", sb.length(), sb.capacity()); // length: 9 capacity: 16
 
         System.out.println(sb.toString()); // Greetings
+
+        String v1 = "Java";
+        String v2 = "Java";
+        StringBuilder sb1 = new StringBuilder();
+        sb1.append("Ja").append("va");
+        System.out.println(v1 == v2); // true
+        System.out.println(v1.equals(v2)); // true
+        System.out.println(sb1.toString() == v1); // false
+        System.out.println(sb1.toString().equals(v1)); // true
+
+        // lower-uppercase
+        String str15 = "animals";
+        System.out.println(str15.toUpperCase()); // ANIMALS
+        // remember that strings are immutable, so the original string stays the same.
+        System.out.println(str15); // animals
+        str15 = str15.toUpperCase();
+        System.out.println(str15); // ANIMALS
+
+        System.out.println("Abc123".toLowerCase()); // abc123
+
+        // slicing
+        String mov = "StarWars";
+        System.out.println(mov.substring(4)); // Wars
+        System.out.println(mov.substring(0, 4)); // Star
+        System.out.println(mov.substring(mov.indexOf('W'))); // Wars
+
+        // equals
+        System.out.println("abc".equals("ABC")); // false
+        System.out.println("ABC".equals("ABC")); // true
+        System.out.println("abc".equalsIgnoreCase("ABC")); // true
+
+        // prefix - suffix
+        System.out.println("abc".startsWith("a")); // true
+        System.out.println("abc".startsWith("A")); // false
+
+        // contains: case-sensitive match
+        System.out.println("abc".contains("b")); // true
+        System.out.println("abc".contains("B")); // false
+
+        // Method chaining
+        String result = " AniMaL ".trim().toLowerCase();
+        System.out.println(result);
+
+        // replace (ALL)
+        System.out.println("mesquite in your cellar".replace('e', 'o')); // "mosquito in your collar"
+        System.out.println("aAbBaA".replace('A', '.')); // "a.bBa."
+
+        // There are three ways to construct a StringBuilder:
+        StringBuilder sb01 = new StringBuilder();
+        StringBuilder sb02 = new StringBuilder("animal");
+        StringBuilder sb03 = new StringBuilder(10);
+
+        sb01 = new StringBuilder("animals");
+        sb01.insert(7, "-"); // sb = animals-
+        sb01.insert(0, "$"); // sb = -animals-
+        System.out.println(sb01);
+
+        // delete
+        sb01 = new StringBuilder("TR_123");
+        sb01.delete(0, 3); // sb01 = 123
+        System.out.println(sb01);
+
+        // deleteCharAt
+        sb01 = new StringBuilder("_TR");
+        sb01.deleteCharAt(0); // TR
+        System.out.println(sb01);
+        // sb01.deleteCharAt(99); // ERR StringIndexOutOfBoundsException
+
+        // reverse
+        sb01 = new StringBuilder("ABC");
+        sb01.reverse(); // "CBA"
+        System.out.println(sb01);
+
+        // toString
+        String s = sb01.toString();
+        System.out.println(s);
+
     }
 
     public void arrayBasics() {
@@ -446,6 +743,13 @@ public class Basics {
         // A single variable of array type may contain references to arrays of different
         // lengths,
         // because an array's length is not part of its type.
+
+        int[][] vars1; // 2D array
+        int vars2[][]; // 2D array
+        int[] vars3[]; // 2D array
+        int[] vars4[], space[][]; // a 2D AND a 3D array
+
+        
         int[] arrA = { 1, 2, 3 };
         int[] arrB = { 10, 20 };
 
@@ -473,6 +777,11 @@ public class Basics {
         System.out.println("arrClone[0] == array3[0]: " + (arrClone[0] == array2D[0])); // true
 
         // sorting
+        header("Arrays.sort()");
+        int[] nums = { 6, 9, 1 };
+        Arrays.sort(nums); // [1, 6, 9]
+        System.out.println(Arrays.toString(nums));
+
         Car car1 = new Car("Kia", "Sorento", 2007);
         Car car2 = new Car("Toyota", "Camry", 2015);
         Car car3 = new Car("Ford", "Mustang", 1967);
@@ -485,6 +794,34 @@ public class Basics {
 
         System.out.println(Arrays.toString(cars));
 
+        // Compare arrays
+        header("array equality");
+        int[] scores1 = { 1, 2, 3, 4, 5 };
+        int[] scores2 = { 1, 2, 3, 4, 5 };
+
+        // The == operator compares references
+        // scores1 and scores2 are two separate array objects
+        System.out.println(scores1 == scores2); // false
+
+        // The equals method on arrays does not compare array contents.
+        // Instead, it inherits the equals method from Object, which also compares
+        // references.
+        System.out.println(scores1.equals(scores2)); // false
+
+        // Correct way to compare contents
+        System.out.println(Arrays.equals(scores1, scores2)); // true
+
+        // binary search
+        header("Binary Search");
+        int[] scores02 = { 40, 60, 70, 85, 95 };
+        System.out.println(Arrays.binarySearch(scores02, 40)); // 0
+        System.out.println(Arrays.binarySearch(scores02, 70)); // 2
+        System.out.println(Arrays.binarySearch(scores02, 100)); // -(5+1)
+        System.out.println(Arrays.binarySearch(scores02, 30)); // -(0+1)
+    }
+
+    public void header(String title) {
+        System.out.println("****** " + title + " ******");
     }
 
     public void controlFlowBasics() {
@@ -501,6 +838,19 @@ public class Basics {
         } else {
             System.out.println("Lets go out!");
         }
+
+        // int x = 1;
+        // if (x=5) { // DOES NOT COMPILE Type mismatch: cannot convert from int to
+        // boolean
+        // System.out.println("x is true");
+        // }
+
+        int x1 = 50, x2 = 75;
+        boolean b = x1 > x2;
+        if (b = true)
+            System.out.println("b=2 evaluates to true");
+        else
+            System.out.println("Failure");
     }
 
     public void switchBasics() {
@@ -606,8 +956,37 @@ public class Basics {
         // while (true) {
         // // Code to be executed repeatedly
         // System.out.println("This loop will run forever.");
-
         // }
+
+        // Creating an Infinite Loop
+        // for (; ; ) {
+        // System.out.println("forever");
+        // }
+
+        System.out.println("*******");
+        int j = 0;
+        for (; j < 5; j++) {
+            System.out.print("*");
+        }
+        System.out.println(j);
+        System.out.println("*******");
+
+        // int x = 0;
+        // for (long y = 0, z = 4; x < 5 && y < 10; x++, y++) {
+        // System.out.print(y + " ");
+        // }
+        // System.out.print(x);
+
+        // int x = 2;
+        // int y = 5;
+        // while (x < 10)
+        // y++;
+
+        int x = 0;
+        do {
+            x++;
+        } while (false);
+        System.out.println(x);
 
         // break statement
         for (int i = 0; i < 5; i++) {
@@ -624,6 +1003,27 @@ public class Basics {
             }
             System.out.println(i);
         }
+
+        // String names = "Lisa";
+        // for (char c : names) { // DOES NOT COMPILE Can only iterate over an array or
+        // an instance of java.lang.Iterable
+        // System.out.print(c + " ");
+        // }
+
+        // optional labels
+        String[][] names = { { "A", "B", "C" }, { "D", "E", "F", }, { "G", "H", "I" } };
+        outerloop: for (String[] row : names) {
+            for (String name : row) {
+                System.out.println("Check: " + name);
+                if (name.contains("D")) {
+                    System.out.println("Found D!");
+                    // break outerloop;
+                    break; // breaks inner for loop
+                }
+
+            }
+        }
+
     }
 
     public void enumBasics() {
@@ -859,6 +1259,77 @@ public class Basics {
                 .build();
     }
 
+    public void timeBasics() {
+        Date today = new Date();
+        System.out.println(today); // Output: Current date and time in milliseconds since epoch
+
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdformat.format(today);
+        System.out.println(formattedDate); // 2025-01-26
+
+        TimeZone tz = TimeZone.getTimeZone("Europe/Istanbul");
+        System.out.println("Timezone: " + tz.getDisplayName());
+
+        Calendar calendar = new GregorianCalendar(tz);
+
+        System.out.println("YEAR: " + calendar.get(Calendar.YEAR));
+        System.out.println("MONTH: " + calendar.get(Calendar.MONTH) + 1); // Months are 0-indexed
+        System.out.println("WEEK_OF_YEAR: " + calendar.get(Calendar.WEEK_OF_YEAR));
+        System.out.println("DAY_OF_MONTH: " + calendar.get(Calendar.DAY_OF_MONTH));
+        System.out.println("HOUR_OF_DAY: " + calendar.get(Calendar.HOUR_OF_DAY));
+
+        // java.time package
+        LocalDate date1 = LocalDate.now();
+        LocalDate date2 = LocalDate.of(1999, 12, 31);
+
+        System.out.println(date1); // 2025-01-26
+        System.out.println(date2.getYear()); // 1999
+
+        LocalDate tomorrow = date1.plusDays(6);
+
+        System.out.println(tomorrow); // 2025-02-01
+
+        // tring form of all available region-based IDs.
+        Set<String> zones = ZoneId.getAvailableZoneIds();
+        for (String zone : zones) {
+            if (zone.contains("London"))
+                System.out.println(zone);
+        }
+
+        ZonedDateTime zdate1 = ZonedDateTime.now(ZoneId.of("Europe/Istanbul"));
+        System.out.println(zdate1); // 2025-01-27T01:52:56.243788+03:00[Europe/Istanbul]
+
+        Instant timestamp1 = Instant.now();
+        System.out.println(timestamp1); // 2025-01-26T23:05:20.940715Z
+
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT; // Use ISO_INSTANT for standard format
+        String timestamp1STR = formatter.format(timestamp1); // 2025-01-26T23:13:47.745515Z
+        System.out.println(timestamp1STR);
+
+        // Duration
+        Duration oneHour = Duration.ofHours(1);
+        Duration thirtyMinutes = Duration.ofMinutes(30);
+        Duration twoDays = Duration.ofDays(2);
+
+        System.out.println(oneHour); // PT1H
+        System.out.println(thirtyMinutes); // PT30M
+        System.out.println(twoDays); // PT48H
+
+        Duration totalDuration = oneHour.plus(thirtyMinutes);
+        System.out.println("Total Duration: " + totalDuration); // PT1H30M
+
+        Duration difference = oneHour.minus(thirtyMinutes);
+        System.out.println("Difference: " + difference); // PT30M
+
+        // Period
+        Period period30Days = Period.ofDays(30);
+        System.out.println(period30Days); // P30D
+
+        Period period1 = date2.until(date1);
+        System.out.println(period1); // P25Y26D
+        System.out.println(period1.getYears()); // 25
+    }
+
     public void exercises() {
         System.out.println("Exercises");
         System.out.println("---------");
@@ -960,9 +1431,20 @@ public class Basics {
     // return sum;
     // }
 
-    public void test() {
-        System.out.println("Test");
-        Tmp t = new Tmp();
+    public void stringEquality(String s1, String s2) {
 
+        System.out.printf("Comparing strings %s vs %s\n", s1, s2);
+
+        if (s1 == s2) {
+            System.out.printf("%s == %s\n", s1, s2);
+        } else {
+            System.out.printf("%s != %s\n", s1, s2);
+        }
+
+        if (s1.equals(s2)) {
+            System.out.printf("%s.equals(%s)\n", s1, s2);
+        } else {
+            System.out.printf("!%s .equals(%s)\n", s1, s2);
+        }
     }
 }

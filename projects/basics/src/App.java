@@ -16,20 +16,23 @@ public class App {
 
         Basics basics = new Basics();
         // basics.variableBasics();
-        // basics.arrayBasics();
+        // basics.wrapperBasics();
+        basics.arrayBasics();
         // basics.stackBasics();
         // basics.operatorBasics();
         // basics.mathBasics();
         // basics.stringBasics();
+        // basics.randomBasics();
         // basics.controlFlowBasics();
         // basics.switchBasics();
         // basics.loopBasics();
         // basics.classBasics();
         // basics.genericsBasics();
         // basics.listBasics();
-        basics.inheritanceBasics();
+        // basics.inheritanceBasics();
         // basics.test();
         // basics.relationshipsBasics();
+        // basics.timeBasics();
         // basics.patternsBasics();
         // basics.exercises();
     }
