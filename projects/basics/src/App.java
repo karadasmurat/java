@@ -17,7 +17,7 @@ public class App {
         Basics basics = new Basics();
         // basics.variableBasics();
         // basics.wrapperBasics();
-        basics.arrayBasics();
+        // basics.arrayBasics();
         // basics.stackBasics();
         // basics.operatorBasics();
         // basics.mathBasics();
@@ -28,7 +28,7 @@ public class App {
         // basics.loopBasics();
         // basics.classBasics();
         // basics.genericsBasics();
-        // basics.listBasics();
+        basics.containerBasics();
         // basics.inheritanceBasics();
         // basics.test();
         // basics.relationshipsBasics();

@@ -22,6 +22,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TimeZone;
 
+import collections.ListDemo;
 import dsa.StackMK;
 import exercises.Exercise;
 import patterns.User;
@@ -29,7 +30,7 @@ import relationships.Country;
 import relationships.Course;
 import relationships.President;
 import relationships.Student;
-
+import util.Util;
 import inheritance.*;
 
 public class Basics {
@@ -749,7 +750,6 @@ public class Basics {
         int[] vars3[]; // 2D array
         int[] vars4[], space[][]; // a 2D AND a 3D array
 
-        
         int[] arrA = { 1, 2, 3 };
         int[] arrB = { 10, 20 };
 
@@ -777,7 +777,7 @@ public class Basics {
         System.out.println("arrClone[0] == array3[0]: " + (arrClone[0] == array2D[0])); // true
 
         // sorting
-        header("Arrays.sort()");
+        Util.header("Arrays.sort()");
         int[] nums = { 6, 9, 1 };
         Arrays.sort(nums); // [1, 6, 9]
         System.out.println(Arrays.toString(nums));
@@ -795,7 +795,7 @@ public class Basics {
         System.out.println(Arrays.toString(cars));
 
         // Compare arrays
-        header("array equality");
+        Util.header("array equality");
         int[] scores1 = { 1, 2, 3, 4, 5 };
         int[] scores2 = { 1, 2, 3, 4, 5 };
 
@@ -812,16 +812,12 @@ public class Basics {
         System.out.println(Arrays.equals(scores1, scores2)); // true
 
         // binary search
-        header("Binary Search");
+        Util.header("Binary Search");
         int[] scores02 = { 40, 60, 70, 85, 95 };
         System.out.println(Arrays.binarySearch(scores02, 40)); // 0
         System.out.println(Arrays.binarySearch(scores02, 70)); // 2
         System.out.println(Arrays.binarySearch(scores02, 100)); // -(5+1)
         System.out.println(Arrays.binarySearch(scores02, 30)); // -(0+1)
-    }
-
-    public void header(String title) {
-        System.out.println("****** " + title + " ******");
     }
 
     public void controlFlowBasics() {
@@ -1080,83 +1076,8 @@ public class Basics {
     }
 
     public void containerBasics() {
-        listBasics();
-    }
-
-    public void listBasics() {
-        System.out.println("List Basics");
-        System.out.println("-----------");
-
-        List<String> names = new ArrayList<>();
-
-        // check if the collection contains elements
-        if (names.isEmpty()) {
-            System.out.println("Collection contains no elements.");
-        }
-
-        // add elements to the list
-        names.add("Ron");
-        names.add("Harry");
-        names.add("Ron"); // Duplicates are allowed in List
-
-        System.out.println(names); // [[Ron, Harry, Ron]
-
-        // the number of elements in this collection
-        System.out.println(names.size()); // 3
-
-        // Remove by object
-        names.remove("Ron");
-
-        System.out.println(names); // [Harry, Ron]
-
-        // Inserts the specified element at the specified position
-        names.add(1, "Hermione");
-
-        // Inserts all of the elements in the specified collection
-        String[] candidates = { "Draco", "Crabbe", "Goyle" };
-        names.addAll(Arrays.asList(candidates));
-        System.out.println(names); // [Harry, Hermione, Ron, Draco, Crabbe, Goyle]
-
-        // Access the element at the specified position in this list.
-        System.out.println(names.get(1)); // Hermione
-
-        // Gets the last element of this collection.
-        System.out.println("Last element: " + names.getLast()); // Goyle
-        System.out.println("Last element: " + names.get(names.size() - 1)); // Goyle
-
-        // check if the collection contains the specified element
-        if (names.contains("Hermione")) {
-            System.out.println("collection contains the specified element.");
-        }
-
-        // Adds an element as the first element
-        names.addFirst("FirstElement");
-        System.out.println(names); // [FirstElement, Harry, Hermione, Ron, Draco, Crabbe, Goyle]
-
-        // Setter: Replaces the element at the specified position
-        names.set(0, "Hagrid");
-
-        // Removes the element at the specified position
-        names.remove(6);
-        System.out.println(names); // [Hagrid, Harry, Hermione, Ron, Draco, Crabbe]
-
-        // Removes the first occurrence of the specified element
-        names.remove("Crabbe");
-        System.out.println(names); // [Hagrid, Harry, Hermione, Ron, Draco]
-
-        // the index of the first occurrence of the specified element, or -1
-        System.out.println("Harry is at index:" + names.indexOf("Harry")); // 1
-
-        // Count the number of elements in the specified collection
-        System.out.println(Collections.frequency(names, "Harry")); // 1
-
-        // Reverses the order of the elements in the specified list.
-        Collections.reverse(names);
-
-        // Iterate through collection
-        for (var s : names) {
-            System.out.println(s);
-        }
+        ListDemo ld = new ListDemo();
+        ld.listBasics();
     }
 
     public void stackBasics() {
