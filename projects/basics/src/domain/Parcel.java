@@ -1,4 +1,4 @@
-package mk;
+package domain;
 
 public class Parcel {
 
