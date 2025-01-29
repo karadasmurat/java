@@ -1,4 +1,4 @@
-package mk;
+package domain;
 
 public class Car implements Comparable<Car> {
 
@@ -17,14 +17,14 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() {
-        return "Car(" + this.make + ", " + this.model + ", " + this.year + ")";
-
+    public int compareTo(Car other) {
+        return this.year - other.year; // Compare cars by year
     }
 
     @Override
-    public int compareTo(Car other) {
-        return this.year - other.year; // Compare cars by year
+    public String toString() {
+        return "Car(" + this.make + ", " + this.model + ", " + this.year + ")";
+
     }
 
 }

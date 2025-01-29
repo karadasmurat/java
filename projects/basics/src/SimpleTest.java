@@ -2,8 +2,6 @@
 
 // import java.util.*; // import must come after package
 
-import java.io.File;
-
 class Simple { // then comes the class
     double width; // fields and methods can go in either order
 
