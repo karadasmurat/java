@@ -23,8 +23,13 @@ import java.util.Set;
 import java.util.TimeZone;
 
 import collections.ListDemo;
+import domain.Car;
+import domain.Product;
+import domain.Rectangle;
+import domain.Tank;
 import dsa.StackMK;
 import exercises.Exercise;
+import generics.GenericBox;
 import patterns.User;
 import relationships.Country;
 import relationships.Course;
@@ -263,6 +268,9 @@ public class Basics {
 
     }
 
+    public void acceptInteger(Integer i){
+        System.out.println(i);
+    }
     public void wrapperBasics() {
         // Wrapper Classes
         Integer i1 = 1;
@@ -280,6 +288,9 @@ public class Basics {
         int totalINT = total.intValue();
 
         System.out.println("Total: " + total + "Total(int): " + totalINT);
+
+        int cnt = 10;
+        acceptInteger(cnt); // Works due to autoboxing
 
     }
 
