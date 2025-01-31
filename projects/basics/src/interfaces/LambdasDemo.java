@@ -1,5 +1,9 @@
 package interfaces;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 import domain.Car;
 import util.Util;
 
@@ -42,10 +46,36 @@ public class LambdasDemo {
         check(car, checker2);
     }
 
+    void predicateDemo() {
+        Predicate<Integer> isEven = num -> num % 2 == 0;
+
+        int x = 6;
+        if (isEven.test(x)) {
+            System.out.println("Even number! " + x);
+        }
+    }
+
+    void removeIfDemo() {
+
+        List<String> bunnies = new ArrayList<>();
+
+        bunnies.add("long ear");
+        bunnies.add("floppy");
+        bunnies.add("hoppy");
+
+        System.out.println(bunnies); // [long ear, floppy, hoppy]
+
+        bunnies.removeIf(s -> s.charAt(0) != 'h');
+
+        System.out.println(bunnies); // [hoppy]
+    }
+
     public static void main(String[] args) {
 
         LambdasDemo id = new LambdasDemo();
         // id.concreteDemo();
-        id.lambdasDemo();
+        // id.lambdasDemo();
+        // id.predicateDemo();
+        id.removeIfDemo();
     }
 }
