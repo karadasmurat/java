@@ -12,6 +12,18 @@ public class Car implements Comparable<Car> {
         this.year = year;
     }
 
+    public static Car sample() {
+        return new Car("Kia", "Sample", 2007);
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
     public void setYear(int year) {
         this.year = year;
     }
