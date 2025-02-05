@@ -3,11 +3,13 @@ package collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import util.Util;
 
-public class ListDemo {
+public class ListDemo implements CollectionsDemo {
 
     void equality() {
         Util.header("Equality");
@@ -41,7 +43,7 @@ public class ListDemo {
     }
 
     void sorting() {
-        
+
         List<Integer> numbers = new ArrayList<>();
 
         numbers.add(99);
@@ -71,18 +73,55 @@ public class ListDemo {
         List<Integer> numlist = Arrays.asList(nums);
     }
 
-    public void listBasics() {
-        System.out.println("List Basics");
-        System.out.println("-----------");
+    public void declareAndInitialize() {
 
         // Declare and initialize
         ArrayList<Integer> list1 = new ArrayList<>();
+
+        var list6 = new ArrayList<Integer>(); // var: ArrayList<Integer>
+
         ArrayList<Integer> list2 = new ArrayList<>(10);
+
         ArrayList<Integer> list3 = new ArrayList<>(list2);
 
-        List<Integer> list4 = new ArrayList<>(); // ArrayList is a List
+        List<Integer> list4 = new ArrayList<>(); // List reference pointing to ArrayList object
         // ArrayList<String> list7 = new List<>(); // DOES NOT COMPILE Type mismatch:
         // cannot convert from List to ArrayList<>
+
+        var list9 = List.of(40, 50, 60); // var: List<Integer>
+
+        Integer[] scores = { 50, 70, 90 };
+        var list10 = List.of(50, 60, 70);
+        // list10.set(0, 100); // immutable! UnsupportedOperationException
+
+        var list11 = List.of(scores);
+
+        var list12 = Arrays.asList(scores);
+
+        System.out.println("List from an array using .of() with varargs");
+        System.out.println(list10.size());
+        list10.forEach(System.out::println);
+
+    }
+
+    public void remove() {
+        Util.header("remove()");
+        // Overloaded remove() methods: remove(int index) vs remove(Object o)
+
+        var list = new LinkedList<Integer>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        list.remove(2); // primitive argument: index
+        list.remove(Integer.valueOf(2));// Integer argument: element
+        System.out.println(list);
+    }
+
+    public void listBasics() {
+        Util.header("List Basics");
+
+        declareAndInitialize();
+        remove();
 
         List<String> names = new ArrayList<>();
 
