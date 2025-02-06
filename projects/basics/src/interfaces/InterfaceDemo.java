@@ -3,6 +3,22 @@ package interfaces;
 import domain.Bird;
 import domain.SmartPhone;
 
+// reducing implicit public visibility of an interface method
+class Device implements Chargeable{
+
+    @Override
+    void charge() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'charge'");
+    }
+
+    @Override
+    public void checkBatteryLevel() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'checkBatteryLevel'");
+    }
+
+}
 public class InterfaceDemo {
     public static void main(String[] args) {
 
