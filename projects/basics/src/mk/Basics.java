@@ -1,6 +1,7 @@
 package mk;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
@@ -22,6 +23,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TimeZone;
 
+import access.one.B;
 import collections.ListDemo;
 import domain.Car;
 import domain.Product;
@@ -67,6 +69,13 @@ public class Basics {
     public byte getAByte() {
         byte b = 1;
         return b;
+    }
+
+    public void accessBasics() {
+        Util.header("Access Basics");
+
+        B b = new B();
+        b.test();
     }
 
     public void variableBasics() {
@@ -268,9 +277,10 @@ public class Basics {
 
     }
 
-    public void acceptInteger(Integer i){
+    public void acceptInteger(Integer i) {
         System.out.println(i);
     }
+
     public void wrapperBasics() {
         // Wrapper Classes
         Integer i1 = 1;
@@ -488,9 +498,35 @@ public class Basics {
         System.out.printf("The max of %d and %d is %d%n", c, d, Math.max(c, d));
         System.out.printf("The min of of %d and %d is %d%n", c, d, Math.min(c, d));
 
+        double squared = Math.pow(5, 2); // 25.0
+        System.out.println("5^2: " + squared); // 5^2: 25.0
+
+        int bigger = Math.max(3, 7); // 7
+        int smaller = Math.min(7, -9); // -9
+
+        System.out.println("Max: " + bigger);
+        System.out.println("Min: " + smaller);
+
         // Math.random works well when you need to generate a single random number.
+        // returns a value greater than or equal to 0 and less than 1.
         int rand = (int) (Math.random() * 10) + 1;
         System.out.println("Math.random(): " + rand);
+
+        BigInteger big1 = new BigInteger("987654321987654321987654321");
+        var bigInt = BigInteger.valueOf(5_000L);
+        var bigDecimal = BigDecimal.valueOf(5_000L);
+        bigDecimal = BigDecimal.valueOf(5_000.00);
+
+        // Performing arithmetic operations
+        // BigInteger sum = big1.add(big2);
+        // BigInteger product = big1.multiply(big2);
+
+        try {
+            int var01 = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void randomBasics() {
@@ -525,6 +561,12 @@ public class Basics {
 
         String str3 = new String("Java");
         String str4 = new String("Java");
+
+        String str5 = "🙂 Emoji";
+        System.out.println(str5);
+        System.out.println(str5.charAt(0));
+        System.out.println(str5.codePointAt(0)); // 128578
+        System.out.println(Character.toChars(128578)); // 🙂
 
         // referring to the same object?
         stringEquality(str1, str2);
@@ -610,6 +652,8 @@ public class Basics {
         System.out.println(mov.substring(4)); // Wars
         System.out.println(mov.substring(0, 4)); // Star
         System.out.println(mov.substring(mov.indexOf('W'))); // Wars
+        // System.out.println(mov.substring(4, 3)); // ERR
+        // java.lang.StringIndexOutOfBoundsException
 
         // equals
         System.out.println("abc".equals("ABC")); // false
@@ -623,6 +667,38 @@ public class Basics {
         // contains: case-sensitive match
         System.out.println("abc".contains("b")); // true
         System.out.println("abc".contains("B")); // false
+
+        // strip
+        String text = " abc\t ";
+        System.out.println("*****strip");
+        System.out.println(text); // abc
+        System.out.println(text.length()); // 6
+        System.out.println(text.strip().length()); // 3
+        System.out.println(text.stripLeading().length()); // 5
+        System.out.println(text.stripTrailing().length()); // 4
+
+        // formatting
+        var customer = "Kate";
+        var orderId = 5;
+        var price = 15.1292;
+        // All print: Hello Kate, order 5 is ready
+        System.out.println("Hello " + customer + ", order " + orderId + " costs " + price); // Hello Kate, order 5 costs
+                                                                                            // 15.1292
+        String msg = String.format("Hello %s, order %d costs %.2f", customer, orderId, price);
+        System.out.println(msg); // Hello Kate, order 5 costs 15.13
+
+        // looping
+        String alpha = "";
+        for (char current = 'a'; current <= 'z'; current++)
+            alpha += current;
+        System.out.println(alpha); // abcdefghijklmnopqrstuvwxyz
+
+        StringBuilder alpha2 = new StringBuilder(); // Efficient mutable String
+
+        for (char current = 'a'; current <= 'z'; current++)
+            alpha2.append(current); // Efficient O(1) append operation
+
+        System.out.println(alpha.toString()); // Convert StringBuilder to String
 
         // Method chaining
         String result = " AniMaL ".trim().toLowerCase();
@@ -829,6 +905,12 @@ public class Basics {
         System.out.println(Arrays.binarySearch(scores02, 70)); // 2
         System.out.println(Arrays.binarySearch(scores02, 100)); // -(5+1)
         System.out.println(Arrays.binarySearch(scores02, 30)); // -(0+1)
+
+        int[] arr1 = { 1, 2, 3, 4, 5 };
+        int[] arr2 = { 1, 2, 0, 4, 5 };
+
+        int mismatchIndex = Arrays.mismatch(arr1, arr2);
+        System.out.println("First mismatch at index: " + mismatchIndex); // 2
     }
 
     public void controlFlowBasics() {
@@ -955,6 +1037,32 @@ public class Basics {
         System.out.println(schoolName); // Output: High School
     }
 
+    public void notGoodButValid() {
+        String str = null;
+        int x = str.length(); // Null pointer access!
+        System.out.println("Length: " + x);
+    }
+
+    public void exceptionBasics() {
+
+        notGoodButValid();
+
+        try {
+
+            System.out.println("try block begins");
+            throw new RuntimeException("Thrown from try");
+
+        } catch (RuntimeException e) {
+
+            System.out.println("catch block begins");
+            throw new RuntimeException("Thrown from catch");
+
+        } finally {
+            System.out.println("Finally executed.");
+            throw new NullPointerException("Thrown from finally");
+        }
+    }
+
     public void loopBasics() {
         for (int i = 0; i < 5; i++) {
             System.out.println("Count is: " + i);
@@ -1074,6 +1182,28 @@ public class Basics {
 
         byte byteVal = 1;
         ot.f(byteVal); // short!
+
+    }
+
+    // Method with a varargs parameter
+    public int addV(int... nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        System.out.println("Sum: " + sum);
+        return sum;
+    }
+
+    public void methodBasics() {
+        Util.header("Method Basics");
+
+        // Option 1: Passing individual elements (Java creates the array)
+        int sum1 = addV(1, 2, 3, 4, 5);
+
+        // Option 2: Passing an array
+        int[] grades = { 1, 2, 3, 4, 5 };
+        int sum2 = addV(grades);
 
     }
 
