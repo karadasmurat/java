@@ -3,13 +3,16 @@ package collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import clone.Person;
+import domain.Product;
 import util.Util;
 
-public class ListDemo implements CollectionsDemo {
+public class ListDemo {
 
     void equality() {
         Util.header("Equality");
@@ -80,7 +83,11 @@ public class ListDemo implements CollectionsDemo {
 
         var list6 = new ArrayList<Integer>(); // var: ArrayList<Integer>
 
-        ArrayList<Integer> list2 = new ArrayList<>(10);
+        ArrayList<Integer> list2 = new ArrayList<>(100);
+        list2.add(1);
+        list2.add(2);
+        System.out.println(list2.size());
+        list2.trimToSize(); // Trims the capacity of this ArrayList instance to be the list's current size.
 
         ArrayList<Integer> list3 = new ArrayList<>(list2);
 
@@ -102,6 +109,38 @@ public class ListDemo implements CollectionsDemo {
         System.out.println(list10.size());
         list10.forEach(System.out::println);
 
+        List<String> birds = new ArrayList<>();
+        birds.add("hawk"); // [hawk]
+        birds.add("hawk"); // [hawk, hawk]
+        birds.add(1, "owl"); // [hawk, owl, hawk]
+        birds.addFirst("firstBird");// [firstBird, hawk, owl, hawk]
+        birds.addLast("lastBird");// [firstBird, hawk, owl, hawk, lastBird]
+        System.out.println(birds);
+
+        birds.remove("hawk"); // [firstBird, owl, hawk, lastBird]
+        birds.remove(0); // [owl, hawk, lastBird]
+        birds.removeFirst(); // [hawk, lastBird]
+        System.out.println(birds);
+
+        // Creating a list with Factory
+        List<String> ofList = List.of("one", "two", "three");
+
+        // ofList.add("err"); // UnsupportedOperationException
+        // ofList.remove("one"); // UnsupportedOperationException
+        // ofList.set(0, "new"); // UnsupportedOperationException
+
+        // v2 returns fixed size list backed by an array
+        var asList = Arrays.asList("one", "two", "three");
+        // asList.add("err"); // UnsupportedOperationException
+        // asList.remove("one"); // UnsupportedOperationException
+        asList.set(0, "UPDATED"); // OK [UPDATED, two, three]
+
+        var numbers = Arrays.asList(1.1, 2.2, 3.3, 4.4, 5.5);
+        numbers.replaceAll(x -> x * 2); // [2.2, 4.4, 6.6, 8.8, 11.0]
+
+        numbers.replaceAll(Math::ceil); // [3.0, 5.0, 7.0, 9.0, 11.0]
+        System.out.println(numbers); 
+
     }
 
     public void remove() {
@@ -112,8 +151,13 @@ public class ListDemo implements CollectionsDemo {
         list.add(3);
         list.add(2);
         list.add(1);
-        list.remove(2); // primitive argument: index
-        list.remove(Integer.valueOf(2));// Integer argument: element
+
+        Integer removedElement1 = list.remove(2); // primitive argument: index
+        System.out.println(removedElement1);
+
+        boolean result = list.remove(Integer.valueOf(2));// Integer argument: element
+        System.out.println(result);
+
         System.out.println(list);
     }
 
@@ -229,9 +273,52 @@ public class ListDemo implements CollectionsDemo {
         sorting();
     }
 
+    public void shallowCopy() {
+
+        Product product1 = new Product('A', 11);
+        Product product2 = new Product('B', 12);
+
+        List<Product> products = new ArrayList<>();
+        products.add(product1);
+        products.add(product2);
+
+        // Creating a shallow copy
+        List<Product> productsCopy = new ArrayList<>(products);
+
+        // Modifying an element in the original list
+        products.get(0).setStock(22);
+
+        // Modify the stock of the second product
+        product2.setStock(33);
+
+        // Checking changes in both lists
+        System.out.println(products); // [Product(code:A, stock:22), Product(code:B, stock:33)]
+        System.out.println(productsCopy); // [Product(code:A, stock:22), Product(code:B, stock:33)]
+    }
+
+    public void iterate() {
+        var numbers = List.of(1, 2, 3, 4, 5);
+
+        // Using for-each loop
+        for (var num : numbers) {
+            System.out.println(num);
+        }
+
+        // Using an iterator
+        Iterator<Integer> iter = numbers.iterator();
+        while (iter.hasNext()) {
+            Integer num = iter.next();
+            System.out.println(num);
+        }
+
+    }
+
     public static void main(String[] args) {
         ListDemo ld = new ListDemo();
-        ld.listBasics();
+        // ld.listBasics();
+        // ld.shallowCopy();
+        ld.declareAndInitialize();
+        // ld.remove();
 
     }
 }

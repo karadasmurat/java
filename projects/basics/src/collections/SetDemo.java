@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -16,12 +17,25 @@ public class SetDemo implements CollectionsDemo {
     public void declareAndInitialize() {
         Util.header("Declare and Initialize Sets.");
 
+        Set<String> set0 = new HashSet<>();
+
         // create an immutable Set in one line
         var letters = Set.of('a', 'b', 'c'); // var: Set<Character>
+
+        Set<Character> lettersCopy = Set.copyOf(letters);
 
         Set<String> members = new HashSet<>(); // Set reference pointing to HashSet object
 
         var set1 = new HashSet<Integer>(); // var: HashSet<Integer>
+
+        // Note: List.of() creates a completely unmodifiable list. 
+        // You cannot change, add, or remove elements.
+        var list = List.of("Harry", "Ron", "Hermione", "Harry");
+        list.add("Hagrid"); // UnsupportedOperationException
+
+        // Creates a mutable set from the list
+        Set<String> hogwarts = new HashSet<>(list);
+        hogwarts.add("Draco");
 
     }
 
@@ -98,10 +112,12 @@ public class SetDemo implements CollectionsDemo {
 
     }
 
+
+
     public static void main(String[] args) {
         SetDemo demo = new SetDemo();
-        // demo.declareAndInitialize();
-        demo.accessElements();
+        demo.declareAndInitialize();
+        // demo.accessElements();
     }
 
 }
