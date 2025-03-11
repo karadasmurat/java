@@ -1,5 +1,7 @@
 package domain;
 
+import relationships.Student;
+
 public class Car implements Comparable<Car> {
 
     private String make;
@@ -28,9 +30,12 @@ public class Car implements Comparable<Car> {
         this.year = year;
     }
 
+    // Natural order: Sort by year
+    // Implementing compareTo() to sort by ID
     @Override
     public int compareTo(Car other) {
-        return this.year - other.year; // Compare cars by year
+        // return this.year - other.year; // ❌ Risky
+        return Integer.compare(this.year, other.year); // No risk of overflow
     }
 
     @Override

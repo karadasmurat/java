@@ -1,4 +1,6 @@
-package inheritance;
+package inheritance.animals.domestic;
+
+import inheritance.animals.Animal;
 
 public class Cat extends Animal {
 

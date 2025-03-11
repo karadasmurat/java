@@ -1,4 +1,4 @@
-package inheritance;
+package inheritance.animals;
 
 public class Animal {
 
@@ -11,6 +11,8 @@ public class Animal {
     protected String name;
 
     private int age; // private access
+
+    String color; // package-private access
 
     // Assume there is no default constructor
     public Animal(String name) {

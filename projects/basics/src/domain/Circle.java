@@ -1,15 +1,21 @@
 package domain;
 
-public class Circle {
+public class Circle extends Shape2D {
 
-    private int radius;
+    private double radius; // Instance variable
 
     public Circle(int radius) { // Local variable
         this.radius = radius; // Assigns value to the instance variable
     }
 
+    @Override
     public double getArea() {
         return Math.PI * Math.pow(radius, 2);
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 2 * Math.PI * radius;
     }
 
     public void doSomething(int radius) {

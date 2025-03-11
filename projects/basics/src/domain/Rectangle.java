@@ -1,17 +1,23 @@
 package domain;
 
-public class Rectangle {
+public class Rectangle extends Shape2D {
 
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
-    public Rectangle(int w, int h) {
+    public Rectangle(double w, double h) {
         width = w;
         height = h;
     }
 
-    public int getArea() {
+    @Override
+    public double getArea() {
         return width * height;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 2 * (width + height);
     }
 
 }

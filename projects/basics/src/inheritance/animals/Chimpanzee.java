@@ -1,4 +1,4 @@
-package inheritance;
+package inheritance.animals;
 
 class Primate {
     public Primate() {
