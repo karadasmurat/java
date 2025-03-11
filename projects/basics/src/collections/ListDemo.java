@@ -110,14 +110,14 @@ public class ListDemo {
         list10.forEach(System.out::println);
 
         List<String> birds = new ArrayList<>();
-        birds.add("hawk"); // [hawk]
+        boolean result1 = birds.add("hawk"); // [hawk]
         birds.add("hawk"); // [hawk, hawk]
         birds.add(1, "owl"); // [hawk, owl, hawk]
         birds.addFirst("firstBird");// [firstBird, hawk, owl, hawk]
         birds.addLast("lastBird");// [firstBird, hawk, owl, hawk, lastBird]
         System.out.println(birds);
 
-        birds.remove("hawk"); // [firstBird, owl, hawk, lastBird]
+        boolean result2 = birds.remove("hawk"); // [firstBird, owl, hawk, lastBird]
         birds.remove(0); // [owl, hawk, lastBird]
         birds.removeFirst(); // [hawk, lastBird]
         System.out.println(birds);
@@ -139,7 +139,31 @@ public class ListDemo {
         numbers.replaceAll(x -> x * 2); // [2.2, 4.4, 6.6, 8.8, 11.0]
 
         numbers.replaceAll(Math::ceil); // [3.0, 5.0, 7.0, 9.0, 11.0]
-        System.out.println(numbers); 
+        System.out.println(numbers);
+
+        if (!numbers.isEmpty()) {
+            // process the list
+            numbers.forEach(System.out::println);
+        }
+
+        // LinkedList
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("A");
+        linkedList.add("B");
+
+        // Adding elements to the first and last positions
+        linkedList.addFirst("First");
+        linkedList.addLast("Last");
+
+        String first = linkedList.getFirst(); // First
+        String last = linkedList.getLast(); // Last
+        String second = linkedList.get(1); // A
+        linkedList.set(1, "Updated");
+
+        System.out.println(linkedList); // [First, Updated, B, Last]
+        System.out.println(first);
+        System.out.println(second);
+        System.out.println(last);
 
     }
 
