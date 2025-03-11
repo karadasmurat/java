@@ -1,5 +1,9 @@
 package inheritance;
 
+import inheritance.animals.Animal;
+import inheritance.animals.domestic.Cat;
+import inheritance.animals.domestic.Dog;
+
 public class InheritanceDemo {
 
     public static void main(String[] args) {

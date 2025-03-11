@@ -7,6 +7,10 @@ class Vehicle {
     }
 }
 
+class Scooter extends Vehicle {
+    // Does NOT override move(), inherits from Vehicle
+}
+
 class Bus extends Vehicle {
     @Override
     public void move() {
@@ -17,10 +21,14 @@ class Bus extends Vehicle {
 public class InheritanceDemo01 {
 
     public static void main(String[] args) {
-        Bus bus = new Bus(); // bus is a Bus instance
-        bus.move(); // Bus overrides move(): call the method from Bus
 
-        Vehicle polyBus = new Bus(); // polyBus is a Vehicle instance
-        polyBus.move(); // Bus overrides move(): call the method from Bus
+        Scooter scooter = new Scooter(); // scooter is a Scooter ref
+        scooter.move(); // Scooter inherits move(): call Vehicle.move()
+
+        Bus bus = new Bus(); // bus is a Bus ref
+        bus.move(); // call Bus.move()
+
+        Vehicle polyBus = new Bus(); // polyBus is a Vehicle ref
+        polyBus.move(); // Bus overrides move(): call Bus.move()
     }
 }

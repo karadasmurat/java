@@ -1,5 +1,8 @@
 package inheritance;
 
+import inheritance.animals.wild.Bear;
+import inheritance.animals.wild.Panda;
+
 public class MethodHidingDemo {
 
     public static void main(String[] args) {
