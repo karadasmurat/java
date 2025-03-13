@@ -1,10 +1,11 @@
 package generics;
+
 /**
  * Generic version of the Box class.
  * 
  * @param <T> the type of the value being boxed
  */
-public class GenericBox<T extends Number> {
+public class GenericBox<T> {
 
     private T value;
 
@@ -13,7 +14,7 @@ public class GenericBox<T extends Number> {
     }
 
     public T getValue() { // ✅ We can return T
-        return this.value; 
+        return this.value;
     }
 
     public void setValue(T val) { // ✅ We can accept T as a parameter
@@ -21,5 +22,3 @@ public class GenericBox<T extends Number> {
     }
 
 }
-
-
