@@ -6,7 +6,29 @@ import java.util.stream.Stream;
 
 public class OptionalDemo {
 
+    public String findUser(int id) {
+        if (id == 1)
+            return "Alice";
+
+        return null; // ❌ Risky! Can cause NullPointerException
+    }
+
+    public Optional<String> findUserById(int id) {
+
+        return (id == 1) ? Optional.of("Alice") : Optional.empty();
+
+    }
+
     public void basics() {
+
+        // The problem with null
+        // 1. Null checks are error-prone
+        // 2. Null checks make code harder to read
+        // 3. Null checks make code harder to maintain
+        String user1 = findUser(1);
+        String user2 = findUser(2);
+        // System.out.println(user2.length()); // ❌ NullPointerException at runtime!
+
         // It is common to want to use empty() when the value is null.
         Optional<String> emptyOpt = Optional.empty();
 
@@ -32,6 +54,9 @@ public class OptionalDemo {
 
         // Throw an Exception if Empty
         String result2 = opt.orElseThrow(() -> new RuntimeException("Value missing!"));
+
+        Optional<String> res = findUserById(2);
+        System.out.println(res.orElse("User Not Found"));
     }
 
     public void lazyEvaluation() {
@@ -54,8 +79,8 @@ public class OptionalDemo {
     public static void main(String[] args) {
 
         OptionalDemo demo = new OptionalDemo();
-        // demo.basics();
-        demo.lazyEvaluation();
+        demo.basics();
+        // demo.lazyEvaluation();
 
     }
 }

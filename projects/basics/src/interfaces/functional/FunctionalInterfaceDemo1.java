@@ -9,6 +9,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
+import java.util.function.UnaryOperator;
+
+import util.Util;
 
 class Score {
     int value;
@@ -94,16 +98,44 @@ public class FunctionalInterfaceDemo1 {
         } else {
             System.out.println("Fail");
         }
+
+        Util.header("instance method reference");
+        // lambda
+        Predicate<String> predicateEmptyStr1 = x -> x.isEmpty();
+        boolean res1 = predicateEmptyStr1.test(""); // true
+        System.out.println(res1);
+
+        // Instance method reference
+        Predicate<String> predicateEmptyStr2 = String::isEmpty;
+        boolean res2 = predicateEmptyStr2.test(""); // true
+        System.out.println(res2);
+
+        List<String> list = new ArrayList<>(List.of("Alice", "  ", "Bob", "", "David"));
+        long blankCnt = list.stream().filter(String::isBlank).count();
+        System.out.println("# blanks: " + blankCnt); // 2
     }
 
     public void suppliers() {
 
-        // Supplier that provides a greeting message
-        Supplier<String> greetingSupplier = () -> "Hello, World!";
+        // v1. anonymous class
+        Supplier<String> greetingSupplier1 = new Supplier<String>() {
+            @Override
+            public String get() {
+                return "Hello, World!";
+            }
+        };
 
         // Calling get() method
-        String str = greetingSupplier.get();
-        System.out.println(str); // Output: Hello, World!
+        String str1 = greetingSupplier1.get();
+        System.out.println(str1); // Output: Hello, World!
+
+        // v2. Lambda
+        // Supplier that provides a greeting message
+        Supplier<String> greetingSupplier2 = () -> "Hello, World!";
+
+        // Calling get() method
+        String str2 = greetingSupplier2.get();
+        System.out.println(str2); // Output: Hello, World!
 
         Supplier<LocalDate> supplier1 = () -> LocalDate.now();
         Supplier<LocalDate> supplier2 = LocalDate::now;
@@ -146,13 +178,28 @@ public class FunctionalInterfaceDemo1 {
 
     public void functions() {
 
-        Function<String, Integer> function1 = (String x) -> x.length();
+        Function<String, Integer> stringToLength = str -> str.length();
+        Integer len1 = stringToLength.apply("Alice");
+        System.out.println(len1); // 5
+
         Function<String, Integer> function2 = String::length;
 
         // int len = function1.apply("Alice");
         int len = function2.apply("Alice");
         System.out.println(len); // 5
 
+        // Remember that ToIntFunction is specialized Function, where R = int
+        ToIntFunction<String> stringToLength2 = String::length;
+        int len2 = stringToLength2.applyAsInt("Alice");
+        System.out.println(len2); // 5
+
+    }
+
+    public void operators() {
+
+        UnaryOperator<String> upperCase = str -> str.toUpperCase();
+        String result1 = upperCase.apply("Alice");
+        System.out.println(result1); // ALICE
     }
 
     public static void main(String[] args) {
@@ -162,7 +209,8 @@ public class FunctionalInterfaceDemo1 {
         // demo.predicates();
         // demo.suppliers();
         // demo.consumers();
-        demo.functions();
+        // demo.functions();
+        demo.operators();
 
     }
 }
