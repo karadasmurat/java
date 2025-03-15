@@ -39,6 +39,9 @@ import relationships.President;
 import relationships.Student;
 import util.Util;
 import inheritance.*;
+import inheritance.animals.Animal;
+import inheritance.animals.domestic.Cat;
+import inheritance.animals.domestic.Dog;
 
 public class Basics {
 

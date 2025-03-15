@@ -1,7 +1,7 @@
 package access;
 
-import inheritance.Animal;
-import inheritance.Dog;
+import inheritance.animals.Animal;
+import inheritance.animals.domestic.Dog;
 
 public class AccessDemo {
 

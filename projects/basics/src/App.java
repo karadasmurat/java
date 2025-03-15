@@ -15,6 +15,7 @@ public class App {
         System.out.println("Hello, there..");
 
         Basics basics = new Basics();
+        basics.accessBasics();
         // basics.variableBasics();
         // basics.wrapperBasics();
         // basics.arrayBasics();
@@ -27,8 +28,10 @@ public class App {
         // basics.switchBasics();
         // basics.loopBasics();
         // basics.classBasics();
+        // basics.methodBasics();
+        // basics.exceptionBasics();
         // basics.genericsBasics();
-        basics.containerBasics();
+        // basics.containerBasics();
         // basics.inheritanceBasics();
         // basics.test();
         // basics.relationshipsBasics();
