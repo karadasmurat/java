@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
+import domain.Car;
+import inheritance.animals.Animal;
 import util.Util;
 
 class Score {
@@ -146,11 +150,19 @@ public class FunctionalInterfaceDemo1 {
         System.out.println(date1);
         System.out.println(date2);
 
+        // v3. method reference
+        Supplier<String> greetingSupplier3 = String::new;
+        String str3 = greetingSupplier3.get();
+
         Supplier<StringBuilder> s1 = StringBuilder::new;
         Supplier<StringBuilder> s2 = () -> new StringBuilder();
 
         System.out.println(s1.get()); // Empty string
         System.out.println(s2.get()); // Empty string
+
+        // Checked Exceptions
+        Supplier<List<Car>> carSupplier1 = Car::sampleCarList;
+        Supplier<List<Car>> carSupplier2 = Car::maySupply; // Unhandled exception type IOException
     }
 
     public void consumers() {
@@ -200,6 +212,41 @@ public class FunctionalInterfaceDemo1 {
         UnaryOperator<String> upperCase = str -> str.toUpperCase();
         String result1 = upperCase.apply("Alice");
         System.out.println(result1); // ALICE
+
+        // String.concat() method and its equivalent usage with a BinaryOperator.
+        // str1.concat(str2) and concatOp.apply(str1, str2) produce the same result
+        String str1 = "Hello,";
+        String str2 = "there!";
+        String res0 = str1.concat(str2);
+        System.out.println(res0);
+
+        // method reference String::concat is used to create the BinaryOperator
+        // instance.
+        BinaryOperator<String> concatOp = String::concat;
+        String res1 = concatOp.apply(str1, str2); // Hello, there!
+        System.out.println(res1);
+
+        BinaryOperator<Integer> addOp = Integer::sum;
+
+        int res2 = addOp.apply(1, 2); // 3
+        System.out.println(res2);
+
+        BinaryOperator<Integer> multOp = (a, b) -> a * b;
+        int res3 = multOp.apply(5, 10); // 50
+        System.out.println(res3);
+
+        Stream<Integer> empty = Stream.empty();
+        Stream<Integer> oneElement = Stream.of(3);
+        Stream<Integer> threeElements = Stream.of(3, 5, 6);
+
+        System.out.println("Reducing an empty stream:");
+        empty.reduce(multOp).ifPresent(System.out::println); // no output
+
+        System.out.println("Reducing a one-element stream:");
+        oneElement.reduce(multOp).ifPresent(System.out::println);
+
+        System.out.println("Reducing a multi-element stream:");
+        threeElements.reduce(multOp).ifPresent(System.out::println);
     }
 
     public static void main(String[] args) {

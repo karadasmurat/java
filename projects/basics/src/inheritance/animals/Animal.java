@@ -66,6 +66,12 @@ public class Animal {
         return "Animal.privateMethod";
     }
 
+    // mapper Function
+    // takes an Animal (this) and returns String
+    public String getAgeCategory() {
+        return age < 1 ? "BABY" : "ADULT";
+    }
+
     // public accessor for private field
     public int getAge() {
         return age;

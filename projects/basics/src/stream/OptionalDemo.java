@@ -76,11 +76,18 @@ public class OptionalDemo {
         System.out.println("Result: " + stream.findFirst().orElse("Not Found"));
     }
 
+    public void filterAndMap() {
+        Optional<Integer> optInt = Optional.of(777);
+        optInt.map(n -> "" + n).filter(s -> s.length() == 3).ifPresent(System.out::println);
+
+    }
+
     public static void main(String[] args) {
 
         OptionalDemo demo = new OptionalDemo();
-        demo.basics();
+        // demo.basics();
         // demo.lazyEvaluation();
+        demo.filterAndMap();
 
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.io.IOException;
 import java.time.Year;
 import java.util.ArrayList;
 
@@ -36,6 +37,12 @@ public class Car implements Comparable<Car> {
                 new Car("BMW", "X1", 2021),
                 new Car("Audi", "A4", 2020));
 
+    }
+
+    // Can a supplier throw checked Exception?
+    public static List<Car> maySupply() throws IOException {
+
+        throw new IOException();
     }
 
     public int getYear() {
