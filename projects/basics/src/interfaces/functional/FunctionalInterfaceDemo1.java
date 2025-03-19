@@ -81,6 +81,11 @@ public class FunctionalInterfaceDemo1 {
 
         // method reference
         Predicate<Integer> predicate1b = FunctionalInterfaceDemo1::hasPassed;
+        Predicate<String> empty = String::isEmpty;
+
+        // negate()
+        // Returns a predicate that represents the logical negation of this predicate.
+        Predicate<String> notEmpty = empty.negate();
 
         // use an existing static utility method reference
         Predicate<Integer> predicate2b = Score::checkUtility;
@@ -162,7 +167,8 @@ public class FunctionalInterfaceDemo1 {
 
         // Checked Exceptions
         Supplier<List<Car>> carSupplier1 = Car::sampleCarList;
-        Supplier<List<Car>> carSupplier2 = Car::maySupply; // Unhandled exception type IOException
+        // Supplier<List<Car>> carSupplier2 = Car::maySupply; // Unhandled exception
+        // type IOException
     }
 
     public void consumers() {

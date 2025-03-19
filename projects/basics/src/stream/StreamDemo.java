@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.Spliterator;
 import java.util.TreeMap;
@@ -23,10 +24,12 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 import clone.Person;
 import domain.Car;
+import domain.Score;
 import inheritance.animals.Animal;
 import inheritance.animals.domestic.Cat;
 import util.Util;
@@ -132,6 +135,12 @@ public class StreamDemo {
         System.out.println("Any Classics?: " + hasClassics); // true
         System.out.println("Any begins with digits?: " + anyBeginsWithDigits); // true
 
+        // matching on infinite stream
+        System.out.println("Matching on infinite streams:");
+        Stream<String> infiniteStream = Stream.generate(() -> "Java");
+        boolean res = infiniteStream.anyMatch(String::isEmpty);
+        System.out.println(res);
+
     }
 
     public void reduce() {
@@ -185,6 +194,8 @@ public class StreamDemo {
         List<String> members = List.of("Harry", "Harry", "Ronald", "Hermione", "Draco");
         Stream<String> memberStream = members.stream();
 
+        Collector<Object, ?, List<Object>> listCollector = Collectors.toList();
+
         Stream<String> stream = Stream.of("w", "o", "l", "f");
 
         StringBuilder collected = stream.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
@@ -229,6 +240,11 @@ public class StreamDemo {
         Map<String, Integer> map = ohMy.collect(Collectors.toMap(s -> s, String::length));
         System.out.println(map);
 
+        // joining
+        System.out.println("Collectors.joining()");
+        String joined = Stream.iterate(1, x -> x++).limit(5).map(x -> "" + x).collect(Collectors.joining());
+        System.out.println(joined);
+
         ohMy = Stream.of("lions", "tigers", "bears");
         String result1 = ohMy.collect(Collectors.joining(", "));
         System.out.println(result1); // lions, tigers, bears
@@ -240,13 +256,13 @@ public class StreamDemo {
 
     public void groupingBy() {
         List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David", "Eve", "Adam");
+        List<Car> cars = Car.sampleCarList();
 
         Map<Integer, List<String>> namesByLength = names.stream()
                 .collect(Collectors.groupingBy(String::length));
 
         System.out.println(namesByLength);
 
-        List<Car> cars = Car.sampleCarList();
         Map<String, List<Car>> makes = cars.stream().collect(Collectors.groupingBy(Car::getMake));
         System.out.println(makes);
 
@@ -256,16 +272,17 @@ public class StreamDemo {
 
         System.out.println(namesByLengthSet);
 
-        var ohMy = Stream.of("lions", "tigers", "bears");
-        Map<Integer, Long> map = ohMy.collect(
+        System.out.println("groupingBy(Car::getMake, Collectors.counting())");
+        Map<String, Long> map = cars.stream().collect(
                 Collectors.groupingBy(
-                        String::length,
+                        Car::getMake,
                         Collectors.counting()));
-        System.out.println(map); // {5=2, 6=1}
+        System.out.println(map); // {Volkswagen=1, Kia=1, Toyota=1, Audi=1, Chevrolet=1, Jaguar=1,
+                                 // Mercedes-Benz=1, Ford=1, BMW=2}
 
         // mapFactory
         // change the type of Map
-        ohMy = Stream.of("lions", "tigers", "bears");
+        var ohMy = Stream.of("lions", "tigers", "bears");
         TreeMap<Integer, Set<String>> map2 = ohMy.collect(
                 Collectors.groupingBy(
                         String::length,
@@ -277,6 +294,14 @@ public class StreamDemo {
         Map<Boolean, List<String>> partitioned = ohMy.collect(
                 Collectors.partitioningBy(s -> s.length() <= 5));
         System.out.println(partitioned); // {false=[tigers], true=[lions, bears]}
+
+        var scores = List.of(70, 40, 90, 60, 80, 95, 75);
+
+        // Group elements based on the result returned by the classifier:
+        // Score::getLetterGrade
+        Map<Character, List<Integer>> res = scores.stream().collect(Collectors.groupingBy(Score::getLetterGrade));
+        System.out.println(res); // {A=[90, 95], B=[80], C=[70, 75], D=[60], F=[40]}
+
     }
 
     public void pipeline() {
@@ -362,6 +387,26 @@ public class StreamDemo {
         var stream = cats.stream();
         cats.add("KC");
         System.out.println(stream.count());
+
+        // Stream from a Set
+        Util.header("Stream from a Set");
+        Set<String> birds = Set.of("oriole", "flamingo");
+        birds.stream().forEach(System.out::println);
+
+        // a lazily concatenated stream
+        var concatenated = Stream.concat(birds.stream(), birds.stream());
+        concatenated.forEach(s -> System.out.print(" " + s)); // flamingo oriole flamingo oriole
+
+        // a stream of lists
+        Util.header("Stream of multiple lists:");
+        var list01 = List.of(1, 2, 3);
+        var list02 = List.of(4, 5, 6);
+        var list03 = List.of(); // an unmodifiable list containing zero elements.
+        Stream.of(list01, list02, list03).forEach(l -> System.out.print(" " + l)); // [1, 2, 3] [4, 5, 6] []
+        // Stream.of(list01, list02, list03).map(x -> x +
+        // 1).forEach(System.out::println);
+        Stream.of(list01, list02, list03).flatMap(List::stream).forEach(System.out::println);
+
     }
 
     public void sorting() {
@@ -392,10 +437,21 @@ public class StreamDemo {
 
     public void primitiveStreams() {
 
+        List<Integer> scores = List.of(70, 40, 90, 60, 80, 95, 75);
+
+        // Note that this is a stream of Integer, the wrapper class.
+        Stream<Integer> stream = scores.stream();
+
+        OptionalInt emptyOptional = OptionalInt.empty();
+        OptionalInt optionalInt = OptionalInt.of(42);
+
         // create an empty stream
         DoubleStream empty = DoubleStream.empty();
 
         DoubleStream varargs = DoubleStream.of(1.0, 1.1, 1.2);
+
+        LongStream strLong = LongStream.of(6L, 8L, 10L);
+        IntStream strInt = strLong.mapToInt(x -> (int) x);
 
         DoubleStream random = DoubleStream.generate(Math::random);
         random.limit(3).forEach(System.out::println);
@@ -409,8 +465,8 @@ public class StreamDemo {
         // primitive optional
         // OptionalDouble is for a primitive
         System.out.println("Primitive Optional:");
-        var stream = IntStream.rangeClosed(1, 5);
-        OptionalDouble avg = stream.average(); // 3.0
+        var stream2 = IntStream.rangeClosed(1, 5);
+        OptionalDouble avg = stream2.average(); // 3.0
         avg.ifPresent(System.out::println);
         System.out.println(avg.getAsDouble());
 
@@ -421,24 +477,54 @@ public class StreamDemo {
 
         IntStream intStream = objStream.mapToInt(toIntFunc);
 
+        List<Double> doubleList = Arrays.asList(1.1, 2.2, 3.3, 4.4, 5.5);
+
+        DoubleStream doubleStream = doubleList.stream()
+                .mapToDouble(Double::doubleValue);
+
+        // Example usage:
+        doubleStream.forEach(System.out::println);
+
+        // Converting primitive stream to stream of wrapper
+        Util.header("IntStream to Stream<Integer>:");
+        IntStream intstr = IntStream.range(1, 5); // Primitive int stream: 1, 2, 3, 4
+        Stream<Integer> strInteger = intstr.boxed(); // Convert to Stream<Integer>
+        List<Integer> listInteger = strInteger.collect(Collectors.toList());
+        System.out.println(listInteger); // Output: [1, 2, 3, 4]
+
     }
 
     public void summaryStats() {
         IntStream numberStream = IntStream.of(1, 2, 3, 4, 5);
 
-        IntSummaryStatistics stats = numberStream.summaryStatistics();
+        IntSummaryStatistics stats1 = numberStream.summaryStatistics();
 
-        System.out.println("Count: " + stats.getCount());
-        System.out.println("Sum: " + stats.getSum());
-        System.out.println("Min: " + stats.getMin());
-        System.out.println("Max: " + stats.getMax());
-        System.out.println("Average: " + stats.getAverage());
+        System.out.println("Count: " + stats1.getCount());
+        System.out.println("Sum: " + stats1.getSum());
+        System.out.println("Min: " + stats1.getMin());
+        System.out.println("Max: " + stats1.getMax());
+        System.out.println("Average: " + stats1.getAverage());
+
+        List<Car> cars = Car.sampleCarList();
+        IntStream intStream = cars.stream().mapToInt(Car::getYear);
+        intStream.min().ifPresent(System.out::println); // 1961
+
     }
 
     public void spliterators() {
-        var stream = List.of("bird-", "bunny-", "cat-", "dog-", "fish-", "lamb-", "mouse-");
-        Spliterator<String> originalBagOfFood = stream.spliterator();
+        // An immutable List<String> named stream containing seven string elements
+        var list = List.of("bird-", "bunny-", "cat-", "dog-", "fish-", "lamb-", "mouse-");
+
+        // Obtain a Spliterator<String> from the list
+        Spliterator<String> originalBagOfFood = list.spliterator();
+
+        // Attempt to partition the originalBagOfFood spliterator into two spliterators.
+        // If successful, it returns a new Spliterator (emmasBag) representing roughly
+        // half of the elements.
+        // The originalBagOfFood spliterator is then modified to represent the remaining
+        // elements.
         Spliterator<String> emmasBag = originalBagOfFood.trySplit();
+
         emmasBag.forEachRemaining(System.out::print); // bird-bunny-cat-
 
         Spliterator<String> jillsBag = originalBagOfFood.trySplit();
@@ -446,6 +532,14 @@ public class StreamDemo {
         jillsBag.forEachRemaining(System.out::print); // fish-
 
         originalBagOfFood.forEachRemaining(System.out::print); // lamb-mouse
+    }
+
+    public void tmp() {
+
+        var spliterator = Stream.generate(() -> "x").spliterator();
+        spliterator.tryAdvance(System.out::print);
+        var split = spliterator.trySplit();
+        split.tryAdvance(System.out::print);
     }
 
     public static void main(String[] args) {
@@ -464,7 +558,19 @@ public class StreamDemo {
         // demo.peeking();
         // demo.primitiveStreams();
         // demo.summaryStats();
-        demo.spliterators();
+        // demo.spliterators();
+        demo.tmp();
     }
 
+}
+
+record Sesame(String name, boolean human) {
+
+    @Override
+    public String toString() {
+        return name();
+    }
+}
+
+record Page(List<Sesame> list, long count) {
 }

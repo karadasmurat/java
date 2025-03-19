@@ -65,6 +65,10 @@ public class Basics {
         arr[0] = 100; // Modifies the first element of the array
     }
 
+    public double getADoublePrimitive() {
+        return 3.14;
+    }
+
     public int getAnInt() {
         return 333;
     }
@@ -220,6 +224,7 @@ public class Basics {
         int res1 = getAByte();
         System.out.println(res1);
 
+        int res2 = getADoublePrimitive(); // DOES NOT COMPILE Type mismatch: cannot convert from double to int
         // short res2 = getAnInt(); // ERR Type mismatch: cannot convert from int to
         // short
 
