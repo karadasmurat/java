@@ -14,15 +14,17 @@ public class Animal {
 
     String color; // package-private access
 
-    // Assume there is no default constructor
+    // Constructor
+    public Animal() {
+        System.out.println("Animal(): constructor called.");
+    }
+
+    // Constructor with name parameter
     public Animal(String name) {
         animalCount++;
         this.name = name;
+        this.age = 0; // default age
         System.out.printf("Animal(%s): constructor called.\n", name);
-    }
-
-    public Animal() {
-        System.out.println("Animal(): constructor called.");
     }
 
     public void makeSound() {
@@ -49,21 +51,24 @@ public class Animal {
         return animalCount;
     }
 
-    public String publicMethod() {
-        System.out.println("Animal.publicMethod()");
-        return "Animal.publicMethod";
-    }
-
-    protected String protectedMethod() {
-        System.out.println("Animal.protectedMethod()");
-        return "Animal.protectedMethod";
-    }
-
     // Private method - only for internal use, hidden from subclasses. NOT inherited
     // Since a subclass does not inherit a private method, it can NOT override it.
-    private String privateMethod() {
+    private void privateMethodAnimal() {
         System.out.println("Animal.privateMethod()");
-        return "Animal.privateMethod";
+    }
+
+    // Package private method - only for package friends,
+    // hidden from subclasses if they are in different package.
+    void packagePrivateMethodAnimal() {
+        System.out.println("Animal.packagePrivateMethod()");
+    }
+
+    protected void protectedMethodAnimal() {
+        System.out.println("Animal.protectedMethod()");
+    }
+
+    public void publicMethodAnimal() {
+        System.out.println("Animal.publicMethod()");
     }
 
     // mapper Function

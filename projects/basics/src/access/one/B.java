@@ -8,17 +8,16 @@ public class B {
         System.out.println("Public method in B");
     }
 
-    void packagePrivateMethodB() { // Package-private method (default)
+    // Package private method - only for package friends (default access)
+    void packagePrivateMethodB() {
         System.out.println("Package-private method in B");
     }
 
-    public void test1() {
-        C c = new C(); // ✅ Allowed: B is in the same package as C
-        c.sayHi();
-    }
-
     public void test() {
-        A a = new A();
-        a.packagePrivateMethod(); // ✅ Allowed: B is in the same package as A
+        A a = new A(); // ✅ Allowed: B is in the same package as A
+        a.packagePrivateMethodA(); // ✅ Allowed: B is in the same package as A
+
+        C c = new C(); // ✅ Allowed: B is in the same package as C
+        c.packagePrivateMethodC(); // ✅ Allowed: B is in the same package as C
     }
 }

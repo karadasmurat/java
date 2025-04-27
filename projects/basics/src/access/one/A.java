@@ -6,7 +6,8 @@ public class A {
         System.out.println("Public method in A");
     }
 
-    void packagePrivateMethodA() { // Package-private method (default)
+    // Package private method - only for package friends (default access)
+    void packagePrivateMethodA() {
         System.out.println("Package-private method in A");
     }
 }

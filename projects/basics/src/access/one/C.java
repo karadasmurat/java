@@ -2,8 +2,9 @@ package access.one;
 
 class C { // Package-private class (default access)
 
-    void sayHi() { // Package-private method (default access)
-        System.out.println("Hi from C");
+    // Package private method - only for package friends (default access)
+    void packagePrivateMethodC() {
+        System.out.println("Package-private method in B");
     }
 
 }
