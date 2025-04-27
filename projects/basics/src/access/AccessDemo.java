@@ -5,8 +5,10 @@ import inheritance.animals.domestic.Dog;
 
 public class AccessDemo {
 
-    private access.a.A1 a1;
-    // private access.a.A2 a2; // ERR The type access.a.A2 is not visible!
+    private access.subpackage.A1 a1;
+    // private access.subpackage.A2 a2; // ERR A2 is not public in
+    // access.subpackage; cannot be accessed from outside
+    // package
 
     public static void main(String[] args) {
         Animal animal = new Animal("ani");

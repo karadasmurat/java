@@ -1,4 +1,4 @@
-package access.a;
+package access.subpackage;
 
 // default access
 class A2 {

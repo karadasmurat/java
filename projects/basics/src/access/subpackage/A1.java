@@ -1,4 +1,4 @@
-package access.a;
+package access.subpackage;
 
 public class A1 {
     private int x;
