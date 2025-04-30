@@ -1,10 +1,11 @@
 package interfaces;
 
 import domain.Bird;
+import domain.Document;
 import domain.SmartPhone;
 
 // reducing implicit public visibility of an interface method
-class Device implements Chargeable{
+class Device implements Chargeable {
 
     @Override
     void charge() {
@@ -19,6 +20,7 @@ class Device implements Chargeable{
     }
 
 }
+
 public class InterfaceDemo {
     public static void main(String[] args) {
 
@@ -32,7 +34,19 @@ public class InterfaceDemo {
 
         Moveable bird2 = new Bird();
         bird2.move();
-        bird2.fly(); // ERR The method fly() is undefined for the type Moveable
+        // bird2.fly(); // ERR The method fly() is undefined for the type Moveable
+
+        Document doc = new Document();
+        Readable docr = new Document();
+        Writeable docw = new Document();
+
+        Readable readableDoc = doc; // The reference is of type Readable
+        // Only methods of Readable can be called
+
+        readableDoc.read(); // Reading the document
+        readableDoc.write(); // ERR The method write() is undefined for the type Readable
+
+        Writeable writableDoc = doc;
+        writableDoc.write(); // Writing to the document
     }
 }
-
