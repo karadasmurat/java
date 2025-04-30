@@ -12,7 +12,7 @@ public class AccessDemo {
 
     public static void main(String[] args) {
         Animal animal = new Animal("ani");
-        animal.publicMethod();
+        animal.publicMethodAnimal();
         // animal.protectedMethod(); // ERR The protectedMethod() from the type Animal
         // is not visible.
 
