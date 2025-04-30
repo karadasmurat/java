@@ -9,7 +9,7 @@ public class Fish extends Animal {
         System.out.println("Fish is swimming");
     }
 
-    public void test() {
+    public void accessTest() {
         publicMethodAnimal(); // ✅ Public method of parent - accessible
         protectedMethodAnimal(); // ✅ Protected method of parent - inherited
                                  // can be accessed directly as if it was declared in Fish itself.

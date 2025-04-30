@@ -8,11 +8,11 @@ public class Animal {
 
     public String scientificName = "Generic Animal";
 
-    protected String name;
+    protected String name; // protected access: inherited by subclasses
 
-    private int age; // private access
+    private int age; // private access, NOT inherited by any subclasses
 
-    String color; // package-private access
+    String color; // package-private access: not inherited by subclasses which are in different packages
 
     // Constructor
     public Animal() {
