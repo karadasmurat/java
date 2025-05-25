@@ -5,8 +5,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.IntStream;
 
-
-
 public class BankAccount {
 
     private Lock vault = new ReentrantLock();
@@ -35,7 +33,7 @@ public class BankAccount {
 
     public static void main(String[] args) {
 
-        var account = new BankAccount();
+        var account = new BankAcc();
         var deposits = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
         // Create a thread pool with 3 threads
@@ -56,6 +54,6 @@ public class BankAccount {
         // .parallel()
         // .forEach(s -> bank.deposit(s));
 
-        System.out.println(account.total);
+        // System.out.println(account.total);
     }
 }

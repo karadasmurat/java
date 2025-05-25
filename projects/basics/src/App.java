@@ -1,5 +1,3 @@
-import java.awt.Rectangle;
-
 import mk.*;
 
 public class App {

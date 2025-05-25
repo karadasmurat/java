@@ -1,3 +1,5 @@
+package app;
+
 import hello.HelloWorld;
 
 public class Main {

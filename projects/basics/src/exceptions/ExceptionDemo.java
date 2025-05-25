@@ -1,9 +1,14 @@
 package exceptions;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-import inheritance.Dog;
+import inheritance.animals.domestic.Dog;
 
 public class ExceptionDemo {
 
@@ -53,16 +58,37 @@ public class ExceptionDemo {
         System.out.println(bob);
     }
 
+    public void tmp() {
+
+        try {
+
+            System.out.println("try block begins");
+            throw new IOException("Thrown from try");
+
+        } catch (IOException e) {
+
+            System.out.println("First catch block begins");
+            throw new RuntimeException("Thrown from catch"); // NOT caught by the next catch, new throw is not in the
+                                                             // try block directly.
+
+        } catch (Exception e) {
+            System.out.println("Second catch block begins");
+
+        }
+
+        System.out.println("* Life goes on!"); // Unreachable code
+
+    }
+
     public static void main(String[] args) {
 
         ExceptionDemo et = new ExceptionDemo();
 
         // et.workOnNullRef();
         // et.doThrowUnchecked();
-
         // et.catchAndThrow();
-
-        et.rollBack();
+        // et.rollBack();
+        et.tmp();
 
         System.out.println("Life goes on!");
 

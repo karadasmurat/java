@@ -1,6 +1,6 @@
 package interfaces.defaults;
 
-public interface SmartDevice {
+interface SmartDevice {
     void turnOn();
 
     // Default method (can be overridden)

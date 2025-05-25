@@ -8,7 +8,7 @@ import domain.SmartPhone;
 class Device implements Chargeable {
 
     @Override
-    void charge() {
+    public void charge() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'charge'");
     }
@@ -44,7 +44,8 @@ public class InterfaceDemo {
         // Only methods of Readable can be called
 
         readableDoc.read(); // Reading the document
-        readableDoc.write(); // ERR The method write() is undefined for the type Readable
+        // readableDoc.write(); // ERR The method write() is undefined for the type
+        // Readable
 
         Writeable writableDoc = doc;
         writableDoc.write(); // Writing to the document

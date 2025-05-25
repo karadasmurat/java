@@ -1,6 +1,6 @@
 package interfaces.defaults;
 
-public interface SmartDevice {
+public interface SmartDevice2 {
 
     void turnOn();
 
@@ -15,7 +15,7 @@ public interface SmartDevice {
     }
 }
 
-class Phone implements SmartDevice {
+class Phone2 implements SmartDevice2 {
     public void turnOn() {
         System.out.println("Phone is turning on.");
     }
@@ -27,9 +27,9 @@ class Phone implements SmartDevice {
 
 }
 
-class Main {
+class Runner {
     public static void main(String[] args) {
-        Phone phone = new Phone();
+        Phone2 phone = new Phone2();
         phone.turnOn();
         phone.showStatus(); // Calls overridden method
 

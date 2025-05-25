@@ -23,7 +23,7 @@ public class InheritanceDemo {
         // We can access its protected members.
         Dog dog = new Dog("bob");
         dog.extraDogBehavior();
-        dog.protectedMethod(); // Animal.protectedMethod()
+        // dog.protectedMethod(); // Animal.protectedMethod()
         dog.doSomething();
         // dog.privateMethod(); // ERR not visible
 

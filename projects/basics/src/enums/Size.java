@@ -21,4 +21,9 @@ public enum Size {
         this.label = label;
     }
 
+    // Methods
+    public String getLabel() {
+        return label;
+    }
+
 }

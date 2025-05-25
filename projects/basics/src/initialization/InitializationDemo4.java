@@ -1,6 +1,6 @@
 package initialization;
 
-class A {
+class A2 {
 
     static int x;
 
@@ -9,7 +9,7 @@ class A {
         x = 10;
     }
 
-    public A() {
+    public A2() {
         System.out.println("A()");
     }
 }
@@ -17,7 +17,7 @@ class A {
 public class InitializationDemo4 {
 
     // Reference as a static variable
-    static A a = new A(); // runs when ID4 Class loads, which Loads A, then constructs A.
+    static A2 a = new A2(); // runs when ID4 Class loads, which Loads A, then constructs A.
 
     public InitializationDemo4() {
         System.out.println("InitializationDemo4()");

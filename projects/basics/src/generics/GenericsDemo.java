@@ -31,9 +31,9 @@ class Handler {
     }
 
     // A generic method that takes a parameter of type T and returns Crate<T>
-    public static <T> Crate<T> ship(T t) {
+    public static <T> Crate2<T> ship(T t) {
         System.out.println("Shipping " + t);
-        return new Crate<T>();
+        return new Crate2<T>();
     }
 
     public static <T, U> void printPair(T first, U second) {
@@ -273,17 +273,18 @@ public class GenericsDemo {
         List<String> stringList = List.of("one", "two", "three");
         // printNumbers(stringList); // ❌ DOES NOT COMPILE
 
-        String res1 = Handler.prepare("Bananas");
-        Integer res2 = Handler.prepare(1); // autoboxing
+        // String res1 = Handler2.prepare("Bananas");
+        // Integer res2 = Handler2.prepare(1); // autoboxing
 
-        // You can call a generic method normally, and the compiler will try to figure
-        // out
-        Crate<String> strCrate = Handler.ship("Apples");
-        Crate<Integer> intCrate = Handler.ship(10);
+        // // You can call a generic method normally, and the compiler will try to
+        // figure
+        // // out
+        // Crate2<String> strCrate = Handler2.ship("Apples");
+        // Crate2<Integer> intCrate = Handler2.ship(10);
 
-        // Alternatively, you can specify the type explicitly
-        Crate<String> strCrate2 = Handler.<String>ship("String");
-        Crate<Integer> intCrate2 = Handler.<Integer>ship(1);
+        // // Alternatively, you can specify the type explicitly
+        // Crate2<String> strCrate2 = Handler2.<String>ship("String");
+        // Crate2<Integer> intCrate2 = Handler2.<Integer>ship(1);
 
         List<String> stringList3 = new ArrayList<>();
         // stringList.add("Hello");

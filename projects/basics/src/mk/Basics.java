@@ -14,11 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TimeZone;
@@ -26,19 +23,15 @@ import java.util.TimeZone;
 import access.one.B;
 import collections.ListDemo;
 import domain.Car;
-import domain.Product;
 import domain.Rectangle;
 import domain.Tank;
 import dsa.StackMK;
 import exercises.Exercise;
-import generics.GenericBox;
-import patterns.User;
 import relationships.Country;
 import relationships.Course;
 import relationships.President;
 import relationships.Student;
 import util.Util;
-import inheritance.*;
 import inheritance.animals.Animal;
 import inheritance.animals.domestic.Cat;
 import inheritance.animals.domestic.Dog;
@@ -196,9 +189,9 @@ public class Basics {
 
         System.out.println("Initialization");
         // instance variables, initialization
-        Product product1 = new Product(); // default constructor
-        System.out.println("code: " + product1.getCode());
-        System.out.println("stock: " + product1.getStock());
+        // Product product1 = new Product(); // default constructor
+        // System.out.println("code: " + product1.getCode());
+        // System.out.println("stock: " + product1.getStock());
 
         // casting
         int num1 = 100;
@@ -224,7 +217,8 @@ public class Basics {
         int res1 = getAByte();
         System.out.println(res1);
 
-        int res2 = getADoublePrimitive(); // DOES NOT COMPILE Type mismatch: cannot convert from double to int
+        // int res2 = getADoublePrimitive(); // DOES NOT COMPILE Type mismatch: cannot
+        // convert from double to int
         // short res2 = getAnInt(); // ERR Type mismatch: cannot convert from int to
         // short
 
@@ -761,6 +755,21 @@ public class Basics {
         Object[] ao; // array of Object
         Collection<?>[] ca; // array of Collection of unknown type
 
+        int[] numAnimals;
+        int[] numAnimals2;
+        int[] numAnimals3;
+        int numAnimals4[];
+        int numAnimals5[];
+
+        // multiple arrays in declaration
+        int[] a, b; // a and b are arrays of int
+        int ids[], types; // ids is an array of int, types is an int
+
+        int[] factorial;
+        // factorial = { 1, 1, 2, 6, 24, 120, 720, 5040 }; // DOES NOT COMPILE: Array
+        // constants can only be used in
+        // initializers.
+
         // allocate memory for 10 integers
         anArray = new int[10];
 
@@ -784,10 +793,14 @@ public class Basics {
         // shortcut syntax to create and initialize an array:
 
         int[] scores = { 30, 50, 60, 80, 90, 100 };
-        int[] factorial;
-        // factorial = { 1, 1, 2, 6, 24, 120, 720, 5040 }; // ERR Array constants can
+        int[] factorial2;
+        // factorial2 = { 1, 1, 2, 6, 24, 120, 720, 5040 }; // ERR Array constants can
         // only be used in initializers.
         factorial = new int[] { 1, 1, 2, 6, 24, 120, 720, 5040 };
+
+        // Print the array
+        System.out.println(scores); // [I@1b6d3586
+        System.out.println("scores: " + Arrays.toString(scores)); // [30, 50, 60, 80, 90, 100]
 
         // Iterate through the array using a for-each loop
         System.out.println("\nIterate using for-each loop:");
@@ -1156,7 +1169,7 @@ public class Basics {
     public void classBasics() {
 
         Rectangle rect = new Rectangle(5, 10);
-        int area = rect.getArea();
+        int area = (int) rect.getArea();
         System.out.println("Area: " + area);
 
         // Nested Classes
@@ -1219,8 +1232,8 @@ public class Basics {
         System.out.println("Generics Basics");
         System.out.println("---------------");
 
-        GenericBox<Integer> box = new GenericBox<>(0);
-        System.out.println(box.getValue());
+        // GenericBox<Integer> box = new GenericBox<>(0);
+        // System.out.println(box.getValue());
 
     }
 

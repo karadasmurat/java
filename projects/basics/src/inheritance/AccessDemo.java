@@ -32,7 +32,8 @@ public class AccessDemo {
 
         Human human = new Human();
         human.publicMethodAnimal();
-        human.protectedMethodAnimal(); // ❌ not visible The protected method from the type Animal is not visible
+        // human.protectedMethodAnimal(); // ❌ not visible The protected method from the
+        // type Animal is not visible
     }
 
 }

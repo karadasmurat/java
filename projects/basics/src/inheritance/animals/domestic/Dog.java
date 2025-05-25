@@ -44,7 +44,7 @@ public class Dog extends Animal {
     // It will not be directly accessible from outside the Person class or its
     // subclasses.
     public void doSomething() {
-        protectedMethod(); // inherited, but accessible like a local method
+        // protectedMethod(); ß// inherited, but accessible like a local method
         privateMethod();
     }
 

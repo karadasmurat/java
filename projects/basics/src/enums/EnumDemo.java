@@ -27,7 +27,7 @@ public class EnumDemo {
             System.out.println(s);
         }
 
-        for (var season : Season.values()) {
+        for (Season season : Season.values()) {
             System.out.println(season.name() + " " + season.ordinal());
         }
 

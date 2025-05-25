@@ -9,9 +9,9 @@ public class InheritanceTest {
         System.out.println(child1.publicField);
 
         // protected field accessible through a public getter
-        child1.accessParentFields(); 
+        // child1.accessParentFields();
 
-        
-        System.out.println(child1.protectedField); // ERR The field Parent.protectedField is not visible
+        // System.out.println(child1.protectedField); // ERR The field
+        // Parent.protectedField is not visible
     }
 }

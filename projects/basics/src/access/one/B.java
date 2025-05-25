@@ -18,6 +18,6 @@ public class B {
         a.packagePrivateMethodA(); // ✅ Allowed: B is in the same package as A
 
         C c = new C(); // ✅ Allowed: B is in the same package as C
-        c.packagePrivateMethodC(); // ✅ Allowed: B is in the same package as C
+        // c.packagePrivateMethodC(); // ✅ Allowed: B is in the same package as C
     }
 }

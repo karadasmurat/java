@@ -47,10 +47,10 @@ class CounterTask implements Runnable {
 // The run method should not be called directly, it is called by the start
 // method
 
-class BankAccount {
+class BankAcc {
     private int balance;
 
-    public BankAccount() {
+    public BankAcc() {
         this.balance = 0;
     }
 
@@ -311,7 +311,7 @@ public class ConcurrencyDemo {
 
     void multiThreadDoSynchronizedDeposit() {
 
-        BankAccount account = new BankAccount();
+        BankAcc account = new BankAcc();
 
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 10000; i++) {

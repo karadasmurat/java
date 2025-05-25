@@ -12,7 +12,8 @@ public class Animal {
 
     private int age; // private access, NOT inherited by any subclasses
 
-    String color; // package-private access: not inherited by subclasses which are in different packages
+    String color; // package-private access: not inherited by subclasses which are in different
+                  // packages
 
     // Constructor
     public Animal() {
@@ -80,6 +81,10 @@ public class Animal {
     // public accessor for private field
     public int getAge() {
         return age;
+    }
+
+    public String getName() {
+        return name;
     }
 
     // inherited by subclasses

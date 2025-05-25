@@ -6,7 +6,7 @@ public class Car {
 
     public Car() {
         System.out.println("long!"); // Should cause a compilation error
-        this("Unknown", 0);
+        // this("Unknown", 0);
     }
 
     public Car(String model, int year) {

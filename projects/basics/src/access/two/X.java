@@ -1,12 +1,12 @@
 package access.two;
 
-import access.one.C; // ❌ The type access.one.C is not visible
+// import access.one.C; // ❌ The type access.one.C is not visible
 import inheritance.animals.Animal;
 
 public class X {
 
     public void test1() {
-        C c = new C(); // ❌ The type access.one.C is not visible
+        // C c = new C(); // ❌ The type access.one.C is not visible
     }
 
     public void test2() {

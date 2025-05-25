@@ -1,0 +1,10 @@
+Feb 04, 2025 6:44:40 PM logging.LogDemo main
+CONFIG: Configuration
+Feb 04, 2025 6:44:40 PM logging.LogDemo main
+FINE: Fine-grained debug info
+Feb 04, 2025 6:44:40 PM logging.LogDemo main
+INFO: This is an INFO message
+Feb 04, 2025 6:44:40 PM logging.LogDemo main
+WARNING: This is a WARNING message
+Feb 04, 2025 6:44:40 PM logging.LogDemo main
+SEVERE: This is a SEVERE message

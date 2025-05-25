@@ -21,4 +21,16 @@ class Swan extends Bird {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
 
+    @Override
+    public void land() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'land'");
+    }
+
+    @Override
+    public void stop() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'stop'");
+    }
+
 }
