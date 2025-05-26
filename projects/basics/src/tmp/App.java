@@ -1,17 +1,23 @@
 package tmp;
 
-public class App {
-    private int numForks;
+interface Greeting {
 
+    String GREETING_PREFIX = "Hello, "; // public static final by default
+
+    void greet(String name);
+}
+
+public class App {
+
+    // static methods cannot directly access instance members!
     public static void main(String[] args) {
 
-         Object skips = 10;
-         switch (skips) {
-         case Integer a when a < 10 -> System.out.print(2);
-         case Integer b when b>= 10 -> System.out.print(4);
-         case null -> System.out.print(6);
-         default -> System.out.print(8);
-         }
-
+        // declare and instantiate an anonymous class
+        Greeting greeting = new Greeting() {
+            @Override
+            public void greet(String name) {
+                System.out.println(GREETING_PREFIX + name);
+            }
+        };
     }
 }

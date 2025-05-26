@@ -1,7 +1,7 @@
 package access;
 
 import access.one.A;
-import access.two.SpecialA;
+import access.two.SpecialATwo;
 
 public class AccessDemo {
 
