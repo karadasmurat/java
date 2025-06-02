@@ -12,12 +12,7 @@ public class App {
     // static methods cannot directly access instance members!
     public static void main(String[] args) {
 
-        // declare and instantiate an anonymous class
-        Greeting greeting = new Greeting() {
-            @Override
-            public void greet(String name) {
-                System.out.println(GREETING_PREFIX + name);
-            }
-        };
+        final var k = 6.02;
+
     }
 }
