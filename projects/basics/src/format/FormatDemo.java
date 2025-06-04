@@ -1,7 +1,13 @@
 package format;
 
+import java.sql.Date;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class FormatDemo {
@@ -13,23 +19,21 @@ public class FormatDemo {
     }
 
     public static void main(String[] args) {
-        var tur = Locale.of("tr", "TR");
 
-        var rb = ResourceBundle.getBundle("app", Locale.of("tr", "TR"));
-        System.out.println(rb.getString("hello")); // Merhaba
+        NumberFormat shortFormat = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+        NumberFormat longFormat = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.LONG);
 
-        String price_en = "40.45"; // dot is part of the number
-        String price_tr = "40,45"; // comma is part of the number
-        var nf_en = NumberFormat.getInstance(Locale.US);
-        var nf_tr = NumberFormat.getInstance(Locale.of("tr", "TR"));
-        try {
-            var number_en = nf_en.parse(price_en);
-            var number_tr = nf_tr.parse(price_tr);
-            System.out.println("Parsed number (en): " + number_en); // 40.45
-            System.out.println("Parsed number (tr): " + number_tr); // 40.45
-        } catch (Exception e) {
-            System.out.println("Failed to parse price_en: " + e);
-        }
+        System.out.println(shortFormat.format(999)); // ✅ Output: 999
+
+        System.out.println(shortFormat.format(1000)); // ✅ Output: 1K
+        System.out.println(shortFormat.format(1499)); // ✅ Output: 1K
+        System.out.println(shortFormat.format(1500)); // ✅ Output: 2K
+        
+        System.out.println(shortFormat.format(10_000)); // ✅ Output: 10K
+        System.out.println(shortFormat.format(2500001)); // ✅ Output: 3M
+        System.out.println(longFormat.format(1000)); // ✅ Output: 1 thousand
+        System.out.println(longFormat.format(2500001)); // ✅ Output: 3 million
+
     }
 
 }

@@ -37,6 +37,7 @@ public class Car extends Vehicle implements Comparable<Car> {
                 new Car("Ford", "Mustang", 1965),
                 new Car("Chevrolet", "Corvette", 1963),
                 new Car("Jaguar", "E-Type", 1961),
+                new Car("Mercedes-Benz", "A", 2020),
                 new Car("Mercedes-Benz", "GLB", 2022),
                 new Car("BMW", "X1", 2021),
                 new Car("Audi", "A4", 2020));
