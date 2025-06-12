@@ -9,7 +9,6 @@ public class TwoTest {
         // access.one.C c = new access.one.C(); // ❌ CompileERR: access.one.C is not
         // visible
 
-        // OneTest is a class in the same package as A
         A a = new A();
 
         // Call public method
@@ -24,6 +23,11 @@ public class TwoTest {
         // Call private method - this will NOT work, as private methods are not
         // accessible outside the class
         // a.privateMethodA(); // ❌ CompileERR: Not visible
+
+        SpecialA2 satwo = new SpecialA2();
+        satwo.publicMethodA(); // OK
+        // satwo.protectedMethodA(); // ❌ CompileERR: Not visible
+        // satwo.packagePrivateMethodA(); // ❌ CompileERR: Not visible
     }
 
 }

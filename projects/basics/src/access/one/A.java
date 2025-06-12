@@ -2,11 +2,13 @@ package access.one;
 
 public class A {
 
+    protected String protectedField = "Accessible via protected";
+
     // public method - visible to all
     public void publicMethodA() {
         System.out.println("A.publicMethodA()");
 
-        privateMethodA(); // Can call private method within the same class
+        privateMethodA(); // Can internally call private method within the same class
     }
 
     // Protected method - visible to package friends + subclasses in other packages
