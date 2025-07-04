@@ -1,5 +1,7 @@
 package access.one;
 
+import access.two.SpecialA2;
+
 public class OneTest {
 
     public static void main(String[] args) {
@@ -21,6 +23,12 @@ public class OneTest {
         // Call private method - this will NOT work, as private methods are not
         // accessible outside the class
         // a.privateMethodA(); // ❌ CompileERR: not visible
+
+        SpecialA2 sa2 = new SpecialA2();
+        sa2.publicMethodA();
+        sa2.protectedMethodA();
+        // sa2.packagePrivateMethodA();
+        // sa2.privateMethodA();
     }
 
 }

@@ -24,10 +24,11 @@ public class TwoTest {
         // accessible outside the class
         // a.privateMethodA(); // ❌ CompileERR: Not visible
 
-        SpecialA2 satwo = new SpecialA2();
-        satwo.publicMethodA(); // OK
-        // satwo.protectedMethodA(); // ❌ CompileERR: Not visible
-        // satwo.packagePrivateMethodA(); // ❌ CompileERR: Not visible
+        SpecialA2 sa2 = new SpecialA2();
+        sa2.publicMethodA(); // OK
+        // sa2.protectedMethodA(); // ❌ CompileERR: Not visible
+        // sa2.packagePrivateMethodA(); // ❌ CompileERR: Not visible
+        // sa2.privateMethodA(); // ❌ CompileERR: Not visible
     }
 
 }
