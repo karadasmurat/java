@@ -1,6 +1,7 @@
 package com.analyticode.app;
 
 import com.analyticode.model.Task;
+import com.analyticode.util.Helper;
 
 public class App {
 
@@ -9,6 +10,9 @@ public class App {
 
         Task task = new Task("groceries");
         System.out.println(task);
+
+        Helper.info();
+
     }
 
 }
