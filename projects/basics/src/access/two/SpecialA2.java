@@ -10,7 +10,12 @@ public class SpecialA2 extends A {
         protectedMethodA(); // ✅ Can access protected method from parent class A
     }
 
-    // SpecialATwo inherits public and protected methods from A,
+    // SpecialA2 defines an independent protected method
+    void protectedMethodA2() {
+        System.out.println("protected");
+    }
+
+    // SpecialA2 inherits public and protected methods from A,
     // meaning it can use them as if they were defined in the subclass itself.
     public void inheritedTest() {
 

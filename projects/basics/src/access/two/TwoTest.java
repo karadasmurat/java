@@ -25,10 +25,14 @@ public class TwoTest {
         // a.privateMethodA(); // ❌ CompileERR: Not visible
 
         SpecialA2 sa2 = new SpecialA2();
+
+        sa2.protectedMethodA2(); // OK, TwoTest and SpecialA2 are in the same package
+
         sa2.publicMethodA(); // OK
         // sa2.protectedMethodA(); // ❌ CompileERR: Not visible
         // sa2.packagePrivateMethodA(); // ❌ CompileERR: Not visible
         // sa2.privateMethodA(); // ❌ CompileERR: Not visible
+
     }
 
 }
