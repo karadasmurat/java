@@ -1,11 +1,12 @@
 package access;
 
 import access.one.A;
+import access.subpackage.A1;
 import access.two.SpecialA2;
 
 public class AccessDemo {
 
-    // private access.subpackage.A1 a1;
+    private access.subpackage.A1 a1;
     // private access.subpackage.A2 a2; // ERR A2 is not public in
     // access.subpackage; cannot be accessed from outside
     // package
@@ -13,6 +14,10 @@ public class AccessDemo {
     public static void main(String[] args) {
 
         A a = new A();
+
+        A0 aZero = new A0();
+        A1 aOne = new A1();
+
         // SpecialA specialA = new SpecialA();
         // specialA.publicMethodA(); // ✅ Public method from A
         // specialA.publicGatewayToParentsProtectedMethod(); // ✅ Accessing protected
