@@ -24,6 +24,12 @@ public class OneTest {
         // accessible outside the class
         // a.privateMethodA(); // ❌ CompileERR: not visible
 
+        SpecialA1 sa1 = new SpecialA1();
+        sa1.publicMethodA();
+        sa1.protectedMethodA();
+        sa1.packagePrivateMethodA();
+        // sa1.privateMethodA();// ❌ CompileERR: not visible
+
         SpecialA2 sa2 = new SpecialA2();
         sa2.publicMethodA();
         sa2.protectedMethodA();

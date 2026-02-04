@@ -9,7 +9,7 @@ public class GenericBox<T> {
 
     private T value;
 
-    GenericBox(T val) {
+    public GenericBox(T val) {
         this.value = val;
     }
 
@@ -19,6 +19,15 @@ public class GenericBox<T> {
 
     public void setValue(T val) { // ✅ We can accept T as a parameter
         this.value = val;
+    }
+
+    public void identityInfo() {
+        if (value != null) {
+            System.out.println("I am: " + getClass().getName());
+            System.out.println("I contain an instance of: " + value.getClass().getName());
+        } else {
+            System.out.println("Box is empty (Type: " + getClass().getName() + ")");
+        }
     }
 
 }
