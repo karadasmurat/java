@@ -5,6 +5,10 @@ import inheritance.animals.Animal;
 // Class representing a Fish (inherits from Animal)
 public class Fish extends Animal {
 
+    protected void protectedMethodFish() {
+        System.out.println("Fish.protected()");
+    }
+
     public void swim() {
         System.out.println("Fish is swimming");
     }

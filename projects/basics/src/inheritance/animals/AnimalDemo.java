@@ -23,6 +23,7 @@ public class AnimalDemo {
         Fish fish = new Fish();
         fish.publicMethodAnimal(); // ✅ Public method - accessible
         fish.protectedMethodAnimal(); // ✅ inherited protected method - accessible through instance
+        fish.protectedMethodFish(); // CompileERR - not visible.
 
         Human human = new Human();
         human.publicMethodAnimal(); // ✅ Public method - accessible
