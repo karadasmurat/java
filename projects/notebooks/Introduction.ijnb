@@ -1,0 +1,68 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "language_info": {
+      "name": "java"
+    }
+  },
+  "cells": [
+    {
+      "id": "57c69ef0-09ba-463d-af4a-a45323102ca5",
+      "cell_type": "markdown",
+      "source": "## Resources\n\n- Java Tutorial\nhttps://dev.java/learn/ (NEW)\nhttps://docs.oracle.com/javase/tutorial/getStarted/index.html\n\n- JDK 25 Documentation\nhttps://docs.oracle.com/en/java/javase/25/\n\n- Java Language and Virtual Machine Specifications\nhttps://docs.oracle.com/javase/specs/index.html\n\n## Introduction\n\n### Key Features of Java:\n\n- **Platform Independence**:\n\n    Unlike languages like C/C++, which compile directly to machine code specific to the target operating system, Java compiles to an intermediate form (bytecode).  Bytecode is an intermediate language that is NOT specific to any particular operating system or hardware architecture. The JVM acts as an interpreter for this bytecode. \n    \n    Java's \"Write Once, Run Anywhere\" (WORA) principle allows developers to compile their code into bytecode, which can then be executed on any platform with a Java Virtual Machine (JVM). Java code, once compiled, can run on any platform that has a JVM installed.\n    \n    A key benefit is that Java code gets compiled once rather than needing to be recompiled for different operating systems. The same class files run everywhere.\n    \n- **Object-Oriented Programming (OOP)**\n\n    Java is built on the principles of OOP, such as encapsulation, inheritance, and polymorphism, which promote modularity, reusability, and maintainability of code.\n    \n- **Robustness**\n\n    Java's strong type checking, exception handling, and automatic memory management (garbage collection) help prevent common programming errors and improve the reliability of Java applications.\n    \n- **Security**\n\n    Java's security features, such as bytecode verification and access control, help protect systems from malicious code and unauthorized access. \n    \n    Java code runs inside the JVM. This creates a sandbox that makes it hard for Java code to do evil things to the computer it is running on.\n    \n- **Large Community and Ecosystem**\n \n    Java has a vast and active community of developers, which provides extensive support, libraries, and frameworks.\n\n\n## Compilation Process\nSee Dev > Compilation vs Interpretation\n\nIn the Java programming language, all source code is first written in plain text files ending with the .java extension. \nThose source files are then compiled into .class files by the javac compiler. \n\nNot Directly Compiled to Machine Code: \nUnlike languages like C/C++, which compile directly to machine code specific to the target operating system, Java compiles to an intermediate form (bytecode).\n\nA .class file does NOT contain code that is native to your processor; it instead contains bytecodes — the machine language of the Java Virtual Machine (Java VM). \n\nThe java launcher tool then runs your application with an instance of the Java Virtual Machine.\n\n![compilation](images/getStarted-compiler.gif)\n\nWhen you compile a .java file, you get an output file for each class in the .java file. \nEach output file has the name of a class in the .java file, but with an extension of .class\nThus you can end up with quite a few .class files from a small number of .java files.\nRemember that we can have multiple classes within a single Java source file - each source file usually has one public class and any number of non-public classes\n\n﻿A working program is a bunch of .class files, which can be packaged and compressed into a Java ARchive (JAR) file (using Java’s jar archiver). The Java interpreter is responsible for finding, loading, and interpreting these files.\n\n\n**Summary:**\n- **Development:** \n\n    You write Java code and compile it using a Java compiler (like javac) on your development machine. This produces .class files containing the bytecode.\n    \n- **Distribution:** \n\n    You package the .class files, along with any necessary resources, into a distributable format (like a JAR file).\n    \n- **Execution:** \n\n    The user on the target platform needs to have a compatible JVM installed. \n    They then run your Java application, and the JVM executes the bytecode.\n\n## C vs Java Compilation Process\n\n![compilation](images/compilation_1.png)\n\n\n\n## JDK (Java Development Kit)\n\nThe JDK is a comprehensive software development environment specifically designed for creating Java applications.   \n\nComponents: It includes: \n\n- Java Compiler (javac): \n    This crucial tool translates Java source code (written in human-readable text) into bytecode, the machine-independent instructions that the JVM understands.   \n    \n- Java Runtime Environment (JRE): \n    The JDK encompasses the JRE, which provides the necessary libraries and the JVM itself for executing Java programs.   \n    The JRE is the runtime environment required to execute compiled Java programs (bytecode).   \n    \n    Components: It consists of: \n        ○ Java Virtual Machine (JVM): \nThe core of the JRE, the JVM is responsible for executing Java bytecode. \nIt acts as an intermediary between the bytecode and the underlying operating system, ensuring platform independence.   \n        ○ Class Libraries: \nThese libraries provide pre-written code for common tasks, such as input/output operations, networking, and graphical user interface (GUI) development.\n    \n- Development Tools: \n    The JDK offers a suite of tools to aid developers, such as debuggers for identifying and fixing errors in code, and profilers for analyzing program performance.   \n\nKey commands include the following:\n\n- javac\tConverts .java source files into .class bytecode\n- java\tExecutes the program\n- jar\tPackages files together\n- javadoc\tGenerates documentation\n\n\n## Java Virtual Machine (JVM): \nThe JVM is a key component of the Java Runtime Environment (JRE). \nIt acts as an intermediary between the Java bytecode and the underlying operating system. \n\nWhen a Java program is executed, the JVM performs the following steps:\n\n1. Loading: \nThe JVM loads the necessary classes and interfaces from the class files into memory.\n2. Verification: \nThe JVM verifies the bytecode to ensure it adheres to the Java Virtual Machine Specification and does not contain any malicious code.\n3. Execution: \nThe JVM executes the verified bytecode using a technique called Just-In-Time (JIT) compilation, which translates the bytecode into native machine code for faster execution.\n4. Garbage Collection: \nThe JVM automatically reclaims memory occupied by objects that are no longer in use, preventing memory leaks.\n\n\n### Java Applets\nAn applet is a mini-program that will run only under a Web browser. \nThe applet is downloaded automatically as part of a Web page (just as, for example, a graphic is automatically downloaded). When the applet is activated, it executes a program. This is part of its beauty—it provides you with a way to automatically distribute the client software from the server at the time the user needs the client software, and no sooner. The user gets the latest version of the client software without fail and without difficult reinstallation. Because of the way Java is designed, the programmer needs to create only a single program, and that program automatically works with all computers that have browsers with built-in Java interpreters. \n\nIndeed, you can find some very clever applets on the Web. But the overwhelming move to applets never happened. The biggest problem was probably that the 10 MB download necessary to install the Java Runtime Environment (JRE) was too scary for the average user. The fact that Microsoft chose not to include the JRE with Internet Explorer may have sealed its fate. In any event, Java applets didn’t happen on a large scale.\n\n\n```\nclass Main {\n   public static void main(String[] args){\n    System.out.println(\"Hello, there!);\n   }\n}\n```\n\n```java\nclass Main {\n   public static void main(String[] args){\n    System.out.println(\"Hello, there!);\n   }\n}\n```\n\n```bash\ncd ~/Desktop\n```",
+      "metadata": {
+        "language": "markdown",
+        "id": "57c69ef0-09ba-463d-af4a-a45323102ca5"
+      }
+    },
+    {
+      "id": "8f58448f-4d9e-43cb-83a5-2e4338c591b3",
+      "cell_type": "code",
+      "source": "System.out.println(\"Hello, there!\");\n",
+      "metadata": {
+        "language": "java",
+        "id": "8f58448f-4d9e-43cb-83a5-2e4338c591b3",
+        "executionSummary": {
+          "executionOrder": 28,
+          "success": true
+        }
+      },
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": "Hello, there!\n"
+          },
+          "metadata": {},
+          "execution_count": 28
+        }
+      ]
+    },
+    {
+      "id": "49430540-295a-4bf1-9b30-ad1458ced985",
+      "cell_type": "code",
+      "source": "class Card {\n    private final int padding;\n\n    public Card(int padding){\n        this.padding = padding;\n    }\n\n    @Override\n    public String toString(){\n        return \"Card(\"+padding+\")\";\n    }\n}\npublic class App {\n    public static void main(String[] args) {\n        \n        System.out.println(\"[main]: lets begin!\");\n        \n        // Test your card padding\n        Card card = new Card(24);\n        System.out.println(card);\n    }\n}\n\n// v3 Explicitly call the main method\nApp.main(new String[0]);\n\n",
+      "metadata": {
+        "language": "markdown",
+        "id": "49430540-295a-4bf1-9b30-ad1458ced985",
+        "executionSummary": {
+          "executionOrder": 27,
+          "success": true
+        }
+      },
+      "execution_count": 27,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": "[main]: lets begin!\nCard(24)\n"
+          },
+          "metadata": {},
+          "execution_count": 27
+        }
+      ]
+    }
+  ]
+}
